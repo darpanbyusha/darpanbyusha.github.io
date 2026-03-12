@@ -292,6 +292,12 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     margin-bottom: 50px; /* Pushes the footer columns down to create elegant spacing */
     letter-spacing: 1px;
 }
+.footer-flag {
+    height: 24px; /* Matches the exact height of the text */
+    width: auto;
+    margin: 0 10px;
+    border-radius: 2px; /* Gives the flag a slightly softer, premium edge */
+}
 .footer-columns { display: flex; justify-content: space-around; margin-bottom: 40px; }
 .footer-col a { color: var(--text-colour); display: block; text-decoration: none; margin: 10px 0;}
 .copyright { padding-top: 20px; border-top: 1px solid var(--border-colour); font-size: 14px; }
