@@ -78,7 +78,7 @@
     --slideshow-overlay: rgba(0, 0, 0, 0.2); 
     
     /* Grid Settings */
-    --product-border-radius: 12px; 
+    --product-border-radius: 0px; 
     --product-aspect-ratio: 1 / 1; 
     --grid-columns-desktop: 4; 
     --grid-columns-mobile: 2;  
