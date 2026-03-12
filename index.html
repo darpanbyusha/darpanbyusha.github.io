@@ -51,12 +51,12 @@
 
     </div>
 
-    <button class="slide-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="slide-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+ <button class="slide-btn prev-btn" id="prevBtn">&#10094;</button>
+    <button class="slide-btn next-btn" id="nextBtn">&#10095;</button>
 
     <div class="slide-dots">
-        <span class="dot active" onclick="currentSlide(0)"></span>
-        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
     </div>
 </section>
 

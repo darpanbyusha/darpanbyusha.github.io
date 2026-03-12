@@ -1,46 +1,55 @@
-// Wait for the HTML to fully load before running the slideshow
 document.addEventListener("DOMContentLoaded", () => {
     let slideIndex = 0;
     let slides = document.querySelectorAll(".slide");
     let dots = document.querySelectorAll(".dot");
+    let prevBtn = document.getElementById("prevBtn");
+    let nextBtn = document.getElementById("nextBtn");
     let autoPlayTimer;
 
-    // Attach functions to the 'window' so your HTML buttons can find them
-    window.showSlide = function(index) {
+    // Safety check: only run if the slideshow exists on the page
+    if (slides.length === 0) return;
+
+    function showSlide(index) {
         slides.forEach(slide => slide.classList.remove("active"));
         dots.forEach(dot => dot.classList.remove("active"));
 
         if (index >= slides.length) slideIndex = 0;
         if (index < 0) slideIndex = slides.length - 1;
 
-        if (slides[slideIndex]) slides[slideIndex].classList.add("active");
-        if (dots[slideIndex]) dots[slideIndex].classList.add("active");
+        slides[slideIndex].classList.add("active");
+        if(dots[slideIndex]) dots[slideIndex].classList.add("active");
     }
 
-    window.moveSlide = function(n) {
+    function moveSlide(n) {
         clearInterval(autoPlayTimer); 
         slideIndex += n;
-        window.showSlide(slideIndex);
+        showSlide(slideIndex);
         startAutoPlay(); 
     }
 
-    window.currentSlide = function(n) {
-        clearInterval(autoPlayTimer);
-        slideIndex = n;
-        window.showSlide(slideIndex);
-        startAutoPlay();
-    }
-
     function startAutoPlay() {
+        clearInterval(autoPlayTimer);
         autoPlayTimer = setInterval(() => {
             slideIndex++;
-            window.showSlide(slideIndex);
+            showSlide(slideIndex);
         }, 5000); 
     }
 
-    // Start the slideshow
-    if(slides.length > 0) {
-        window.showSlide(slideIndex);
-        startAutoPlay();
-    }
+    // Attach Event Listeners to Buttons
+    if (prevBtn) prevBtn.addEventListener("click", () => moveSlide(-1));
+    if (nextBtn) nextBtn.addEventListener("click", () => moveSlide(1));
+
+    // Attach Event Listeners to Dots
+    dots.forEach(dot => {
+        dot.addEventListener("click", (e) => {
+            clearInterval(autoPlayTimer);
+            slideIndex = parseInt(e.target.getAttribute("data-index"));
+            showSlide(slideIndex);
+            startAutoPlay();
+        });
+    });
+
+    // Start everything up
+    showSlide(slideIndex);
+    startAutoPlay();
 });
