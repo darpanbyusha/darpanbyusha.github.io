@@ -64,7 +64,11 @@ body {
     background-color: #fff;
     border-bottom: 1px solid #eee;
 }
-
+.site-logo {
+    height: var(--logo-height, 60px); /* Adjust this value to make it bigger/smaller */
+    width: auto;
+    display: block;
+}
 .header-centre a {
     font-size: var(--logo-font-size);
     font-weight: bold;
