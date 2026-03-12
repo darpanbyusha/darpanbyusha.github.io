@@ -83,8 +83,8 @@ body {
     
     /* Extreme Frosted Glass Treatment */
     background: rgba(237, 237, 237, 0.6);
-    backdrop-filter: blur(15px) saturate(500%);
-    -webkit-backdrop-filter: blur(15px) saturate(500%);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
     border: none;
 }
