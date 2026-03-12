@@ -284,13 +284,21 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 @media (max-width: 768px) { .product-grid { grid-template-columns: repeat(var(--grid-columns-mobile), 1fr); } .collection-grid {grid-template-columns: 1fr;} }
 
 /* --- 5. FOOTER --- */
-.site-footer { background-color: var(--bg-colour-accent); color: var(--text-colour); padding: 20px 20px; text-align: center; }
+.site-footer { background-color: var(--bg-colour); color: var(--text-colour); padding: 20px 20px; text-align: center; }
 /* NEW: Styling for the heritage tagline */
 .footer-tagline {
-    font-family: var(--font-heading); /* Uses Libre Bodoni for a premium look */
+    font-family: var(--font-heading);
     font-size: 1.5rem;
-    margin-bottom: 50px; /* Pushes the footer columns down to create elegant spacing */
+    margin-bottom: 25px; 
     letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* NEW: Applying your custom lighter grey just to this line */
+    background-color: var(--bg-colour-accent);
+    padding: 15px 20px; /* Gives the background colour some breathing room */
+    border-radius: 4px; /* Optional: gives the strip a slightly softer edge */
 }
 .footer-flag {
     height: 24px; /* Matches the exact height of the text */
