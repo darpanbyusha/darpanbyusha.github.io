@@ -69,7 +69,7 @@
     --input-hover-bg: #f9f9f9;
 
     /* --- 4. LAYOUT SETTINGS --- */
-    --header-padding: 5px 50px;
+    --header-padding: 10px 50px 10px 50px;
     --section-padding: 80px 10%;
     --logo-height: 60px; 
     --logo-font-size: 32px;
@@ -284,6 +284,13 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 
 /* --- 5. FOOTER --- */
 .site-footer { background-color: var(--bg-colour); color: var(--text-colour); padding: 60px 20px; text-align: center; }
+/* NEW: Styling for the heritage tagline */
+.footer-tagline {
+    font-family: var(--font-heading); /* Uses Libre Bodoni for a premium look */
+    font-size: 1.5rem;
+    margin-bottom: 50px; /* Pushes the footer columns down to create elegant spacing */
+    letter-spacing: 1px;
+}
 .footer-columns { display: flex; justify-content: space-around; margin-bottom: 40px; }
 .footer-col a { color: var(--text-colour); display: block; text-decoration: none; margin: 10px 0;}
 .copyright { padding-top: 20px; border-top: 1px solid var(--border-colour); font-size: 14px; }
