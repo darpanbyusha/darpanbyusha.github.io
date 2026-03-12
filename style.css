@@ -177,17 +177,35 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     align-items: center;
     padding: var(--header-padding);
     
-    /* Default: Transparent with a subtle dark gradient from the top */
-    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+    /* FIX 3: Barely visible gradient, just enough to keep white text readable */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 100%);
+    
+    /* FIX 4: Forcing no borders or shadows to kill that weird line */
+    border: none;
+    box-shadow: none;
+    
     transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* FIX 1 & 2: Increased margin from 10px to 24px for much wider, elegant gaps */
+.header-left a, 
+.header-right a {
+    margin: 0 24px; 
+    text-decoration: none;
+    font-size: var(--nav-font-size);
 }
 
 /* Default Text & Icons (White) */
 .header-centre a, 
-.header-left a, 
-.header-right a, 
 .social-icons a i, 
 .nav-links a i {
+    color: #ffffff;
+    transition: color 0.4s ease;
+}
+
+/* Ensure the links themselves also transition smoothly */
+.header-left a, 
+.header-right a {
     color: #ffffff;
     transition: color 0.4s ease;
 }
@@ -197,7 +215,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     width: auto; 
     display: block; 
     transition: filter 0.4s ease;
-    /* ASSUMPTION: If your logo.png is naturally dark, this turns it pure white */
+    /* Turns dark logo pure white on the transparent background */
     filter: brightness(0) invert(1); 
 }
 
@@ -206,7 +224,8 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 ========================================== */
 .site-header.scrolled {
     background: #ffffff;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Adds a very soft shadow only when scrolling */
+    border: none; 
 }
 
 /* Scrolled Text & Icons (Dark) */
@@ -215,7 +234,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 .site-header.scrolled .header-right a, 
 .site-header.scrolled .social-icons a i, 
 .site-header.scrolled .nav-links a i {
-    color: var(--text-colour); /* Pulls your dark text colour from settings */
+    color: var(--text-colour); 
 }
 
 /* Restore Hover Effects only when scrolled */
