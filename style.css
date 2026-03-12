@@ -18,7 +18,7 @@ body {
     /* Desktop Settings */
     --header-padding: 15px 50px;
     --section-padding: 80px 10%;
-    --logo-height: 40px; /* Shrinks the logo slightly so it doesn't push the header open */
+    --logo-height: 50px; /* Shrinks the logo slightly so it doesn't push the header open */
     --logo-font-size: 32px;
     --nav-font-size: 14px;
     /* Slideshow Settings */
@@ -71,17 +71,22 @@ body {
 }
 /* --- 1. HEADER --- */
 .site-header {
-    position: fixed; /* Makes the header float */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Ensures it stays above all images */
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: var(--header-padding);
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
+    
+    /* The Apple Frosted Glass Treatment */
+    background-color: rgba(255, 255, 255, 0.75); /* Pure white at 75% opacity */
+    backdrop-filter: blur(16px); /* The main blurring effect */
+    -webkit-backdrop-filter: blur(16px); /* Crucial for Apple/Safari support */
+    
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* A very subtle, soft border line */
 }
 .site-logo {
     height: var(--logo-height, 60px); /* Adjust this value to make it bigger/smaller */
@@ -173,10 +178,10 @@ body {
 .slideshow-container {
     position: relative;
     width: 100%;
-    aspect-ratio: 24 / 10; /* Forces the exact banner ratio */
-    height: auto; /* Removes the fixed viewport height */
+    aspect-ratio: 24 / 10;
+    height: auto;
     overflow: hidden;
-    margin-top: 80px; /* Adjust this if the header overlaps */
+    margin-top: 0; /* Changed to 0 so it slides beautifully under the glass */
 }
 
 @media (max-width: 768px) {
