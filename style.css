@@ -30,9 +30,9 @@ body {
     /* Grid & Layout Settings */
     --product-border-radius: 12px; /* Set to 12 as requested */
     --product-aspect-ratio: 1 / 1; /* Makes images perfectly square */
-    --grid-columns-desktop: 3; /* Change this to 4 or 5 for smaller, more packed images */
+    --grid-columns-desktop: 4; /* Change this to 4 or 5 for smaller, more packed images */
     --grid-columns-mobile: 2;  /* Change this to 1 for a single massive column on phones */
-    --grid-gap: 10px; /* Set to 10px as requested */
+    --grid-gap: 12px; /* Set to 10px as requested */
     --page-padding-x: 20px; /* The customizable left/right spacing */
 }
 
