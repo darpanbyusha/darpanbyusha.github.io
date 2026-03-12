@@ -10,14 +10,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (slides.length === 0) return;
 
     function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove("active"));
-        dots.forEach(dot => dot.classList.remove("active"));
-
+        let track = document.querySelector(".slideshow-track");
+        
+        // Loop around if at the end or beginning
         if (index >= slides.length) slideIndex = 0;
         if (index < 0) slideIndex = slides.length - 1;
 
-        slides[slideIndex].classList.add("active");
-        if(dots[slideIndex]) dots[slideIndex].classList.add("active");
+        // Slide the entire track to the left (e.g., -100%, -200%)
+        track.style.transform = `translateX(-${slideIndex * 100}%)`;
+
+        // Update active dot
+        dots.forEach(dot => dot.classList.remove("active"));
+        if (dots[slideIndex]) dots[slideIndex].classList.add("active");
     }
 
     function moveSlide(n) {
