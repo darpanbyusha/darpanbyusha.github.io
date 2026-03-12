@@ -3,28 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DARPAN by Usha | Bespoke Indian Wear</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <title>Boutique Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <nav>
-        <div class="logo">DARPAN by Usha</div>
-        <ul>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#journey">Our Journey</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <header class="site-header">
+        <div class="header-left social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+        </div>
+        <div class="header-centre logo">
+            <a href="#">BOUTIQUE</a>
+        </div>
+        <div class="header-right nav-links">
+            <a href="#search"><i class="fas fa-search"></i></a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </header>
 
-    <section id="hero">
-        <h1 class="animate-up">DARPAN by Usha</h1>
-        <h1 class="animate-up">Crafting Elegance,<br>One Stitch at a Time.</h1>
-        <p class="animate-up">Bespoke Lehengas, Kurtis, and Blouses handcrafted in India.</p>
+    <section class="slideshow">
+        <div class="slide">
+            <img src="images/banner1.jpg" alt="Latest Lehenga Designs">
+            <div class="slide-content">
+                <h2>Bespoke Elegance</h2>
+                <a href="#portfolio" class="btn">View Designs</a>
+            </div>
+        </div>
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="script.js"></script>
+    <section class="info-bar">
+        <div class="info-item"><i class="fas fa-gem"></i> Premium Fabrics</div>
+        <div class="info-item"><i class="fas fa-tape"></i> Custom Fit</div>
+        <div class="info-item"><i class="fas fa-award"></i> 25+ Years Experience</div>
+    </section>
+
+    <section class="featured-collections section-padding">
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="collection-grid">
+            <div class="collection-card"><h3>Bridal Lehengas</h3></div>
+            <div class="collection-card"><h3>Designer Blouses</h3></div>
+            <div class="collection-card"><h3>Festive Kurtis</h3></div>
+        </div>
+    </section>
+
+    <section class="featured-products section-padding" id="portfolio">
+        <h2 class="section-title">Latest Masterpieces</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="images/dress1.jpg" alt="Design 1">
+            </div>
+            <div class="product-card">
+                <img src="images/dress2.jpg" alt="Design 2">
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-columns">
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">...</div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="#">Policies</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="footer-col">
+                <h4>Visit Us</h4>
+                <p>123 Fashion Street, City, India</p>
+                </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Boutique Name. All rights reserved.</p>
+        </div>
+    </footer>
+
 </body>
 </html>

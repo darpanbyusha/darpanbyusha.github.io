@@ -1,33 +1,115 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ==========================================
+   THEME SETTINGS (Edit these values!)
+========================================== */
+:root {
+    /* Global Colours */
+    --primary-colour: #8b0000; /* Deep Maroon */
+    --background-colour: #fdfaf6;
+    --text-colour: #333333;
+    --info-bar-bg: #eae0d5;
 
-body { 
-    font-family: 'Inter', sans-serif; 
-    background-color: #fffaf5; /* Soft, elegant off-white */
-    color: #222;
-    overflow-x: hidden;
+    /* Desktop Settings */
+    --header-padding: 20px 50px;
+    --section-padding: 80px 10%;
+    --logo-font-size: 32px;
+    --nav-font-size: 14px;
+    
+    /* Grid & Layout Settings */
+    --product-border-radius: 12px; /* Set to 12 as requested */
+    --grid-gap: 30px;
+    --product-aspect-ratio: 1 / 1; /* Makes images perfectly square */
 }
 
-nav {
+/* ==========================================
+   MOBILE SETTINGS (Overrides for small screens)
+========================================== */
+@media (max-width: 768px) {
+    :root {
+        --header-padding: 15px 20px;
+        --section-padding: 50px 5%;
+        --logo-font-size: 24px;
+        --grid-gap: 15px;
+    }
+}
+
+/* ==========================================
+   BASE STYLES
+========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-colour);
+    color: var(--text-colour);
+}
+
+.section-padding {
+    padding: var(--section-padding);
+}
+/* --- 1. HEADER --- */
+.site-header {
     display: flex;
     justify-content: space-between;
-    padding: 30px 10%;
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-}
-
-.logo { font-family: 'Playfair Display'; font-weight: 700; letter-spacing: 2px; }
-
-ul { display: flex; list-style: none; gap: 30px; }
-a { text-decoration: none; color: #222; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
-
-#hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    text-align: center;
+    padding: var(--header-padding);
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
 }
 
-h1 { font-family: 'Playfair Display'; font-size: 4rem; line-height: 1.1; margin-bottom: 20px; color: #8b0000; }
+.header-centre a {
+    font-size: var(--logo-font-size);
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--primary-colour);
+}
+
+.header-left a, .header-right a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--text-colour);
+    font-size: var(--nav-font-size);
+}
+
+/* --- 3. FEATURED PRODUCTS --- */
+.product-grid {
+    display: grid;
+    /* This automatically creates columns that adapt to screen size */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--grid-gap);
+}
+
+.product-card {
+    border-radius: var(--product-border-radius); /* Uses your 12px setting */
+    overflow: hidden;
+    aspect-ratio: var(--product-aspect-ratio); /* Forces the square shape */
+    background-color: #eee;
+}
+
+.product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures images fill the square without stretching */
+}
+
+/* --- 5. INFO BAR --- */
+.info-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: var(--info-bar-bg);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Mobile Info Bar Stack */
+@media (max-width: 768px) {
+    .info-bar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
