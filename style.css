@@ -8,11 +8,12 @@
     --text-colour: #333333;
     --info-bar-bg: #eae0d5;
 
-/* Desktop Settings */
+    /* Desktop Settings */
     --header-padding: 20px 50px;
+    --section-padding: 80px 10%;
     --logo-font-size: 32px;
     --nav-font-size: 14px;
-    
+
     /* NEW: Header Icon Sizes */
     --social-icon-size: 20px; /* Change this number to make them bigger! */
     
@@ -28,8 +29,12 @@
 @media (max-width: 768px) {
     :root {
         --header-padding: 15px 20px;
+        --section-padding: 50px 5%;
         --logo-font-size: 24px;
-        --social-icon-size: 18px; /* Keeps them neat on mobiles */
+        --grid-gap: 15px;
+        --logo-font-size: 24px;
+        --social-icon-size: 18px;
+    }
 }
 
 /* ==========================================
@@ -73,7 +78,6 @@ body {
     color: var(--text-colour);
     font-size: var(--nav-font-size);
 }
-/* --- HEADER ICONS --- */
 .social-icons a i, 
 .nav-links a i {
     font-size: var(--social-icon-size);
@@ -124,5 +128,4 @@ body {
         align-items: center;
         gap: 10px;
     }
-}
 }
