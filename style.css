@@ -165,7 +165,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
    SECTIONS
 ========================================== */
 
-/* --- LUXURY CRYSTAL HEADER --- */
+/* --- 1. HEADER (Dynamic Transparent to Solid) --- */
 .site-header {
     position: fixed;
     top: 0;
@@ -175,22 +175,59 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--header-padding); 
+    padding: var(--header-padding);
     
-    /* Elegant, low-saturation frosted glass */
-    background: rgba(255, 255, 255, 0.8); /* Whiter, cleaner base */
-    backdrop-filter: blur(10px); /* Lighter blur */
-    -webkit-backdrop-filter: blur(10px);
-    
-    /* Remove the heavy shadow, use a thin, expensive-looking line */
-    box-shadow: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05); 
+    /* Default: Transparent with a subtle dark gradient from the top */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
 }
-.site-logo { height: var(--logo-height); width: auto; display: block; }
-.header-centre a { font-size: var(--logo-font-size); font-weight: bold; color: var(--btn-prim-bg); }
-.header-left a, .header-right a { margin: 0 10px; color: var(--text-colour); font-size: var(--nav-font-size); }
-.social-icons a i, .nav-links a i { font-size: var(--social-icon-size); color: var(--text-colour); transition: color 0.3s ease; }
-.social-icons a:hover i, .nav-links a:hover i { color: var(--btn-prim-bg); }
+
+/* Default Text & Icons (White) */
+.header-centre a, 
+.header-left a, 
+.header-right a, 
+.social-icons a i, 
+.nav-links a i {
+    color: #ffffff;
+    transition: color 0.4s ease;
+}
+
+.site-logo { 
+    height: var(--logo-height); 
+    width: auto; 
+    display: block; 
+    transition: filter 0.4s ease;
+    /* ASSUMPTION: If your logo.png is naturally dark, this turns it pure white */
+    filter: brightness(0) invert(1); 
+}
+
+/* ==========================================
+   THE SCROLLED STATE (Solid White)
+========================================== */
+.site-header.scrolled {
+    background: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Scrolled Text & Icons (Dark) */
+.site-header.scrolled .header-centre a, 
+.site-header.scrolled .header-left a, 
+.site-header.scrolled .header-right a, 
+.site-header.scrolled .social-icons a i, 
+.site-header.scrolled .nav-links a i {
+    color: var(--text-colour); /* Pulls your dark text colour from settings */
+}
+
+/* Restore Hover Effects only when scrolled */
+.site-header.scrolled .social-icons a:hover i, 
+.site-header.scrolled .nav-links a:hover i {
+    color: var(--btn-prim-bg); 
+}
+
+/* Reverts the logo back to its natural dark colours */
+.site-header.scrolled .site-logo {
+    filter: none; 
+}
 
 /* --- 2. SLIDESHOW --- */
 .slideshow-container { position: relative; width: 100%; aspect-ratio: 24 / 10; height: auto; overflow: hidden; margin-top: 0; }
