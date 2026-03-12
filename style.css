@@ -304,7 +304,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     height: 24px; /* Matches the exact height of the text */
     width: auto;
     margin: 0 10px;
-    border-radius: 2px; /* Gives the flag a slightly softer, premium edge */
+    border-radius: 0px; /* Gives the flag a slightly softer, premium edge */
 }
 .footer-columns { display: flex; justify-content: space-around; margin-bottom: 40px; }
 .footer-col a { color: var(--text-colour); display: block; text-decoration: none; margin: 10px 0;}
