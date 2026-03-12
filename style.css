@@ -28,10 +28,11 @@ body {
     
     /* Grid & Layout Settings */
     --product-border-radius: 12px; /* Set to 12 as requested */
-    --grid-gap: 30px;
     --product-aspect-ratio: 1 / 1; /* Makes images perfectly square */
     --grid-columns-desktop: 3; /* Change this to 4 or 5 for smaller, more packed images */
     --grid-columns-mobile: 2;  /* Change this to 1 for a single massive column on phones */
+    --grid-gap: 10px; /* Set to 10px as requested */
+    --page-padding-x: 20px; /* The customizable left/right spacing */
 }
 
 /* ==========================================
@@ -113,9 +114,8 @@ body {
 
 /* --- 3. OUR DESIGNS GRID --- */
 .featured-products {
-    max-width: 1200px; /* Keeps the grid from stretching infinitely on large monitors */
-    margin: 0 auto; /* Centers the whole section on the page */
-    padding: var(--section-padding);
+    width: 100%;
+    padding: 60px var(--page-padding-x); /* 60px top/bottom, 20px left/right */
 }
 
 .product-grid {
@@ -123,6 +123,7 @@ body {
     grid-template-columns: repeat(var(--grid-columns-desktop), 1fr);
     gap: var(--grid-gap);
     margin-top: 40px;
+    width: 100%;
 }
 
 .product-card {
@@ -162,9 +163,10 @@ body {
 .slideshow-container {
     position: relative;
     width: 100%;
-    height: var(--slideshow-height-desktop);
+    aspect-ratio: 24 / 10; /* Forces the exact banner ratio */
+    height: auto; /* Removes the fixed viewport height */
     overflow: hidden;
-    margin-top: 80px; /* Adjust this if your header overlaps */
+    margin-top: 80px; /* Adjust this if the header overlaps */
 }
 
 @media (max-width: 768px) {
@@ -194,8 +196,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Ensures the whole image is visible, no cropping */
-    background-color: #000; /* Optional: adds a black background if the image doesn't fill the edges */
+    object-fit: cover; /* Perfectly fills the 24:10 box */
     z-index: -2;
 }
 
