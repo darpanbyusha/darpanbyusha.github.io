@@ -23,6 +23,8 @@
     --product-border-radius: 12px; /* Set to 12 as requested */
     --grid-gap: 30px;
     --product-aspect-ratio: 1 / 1; /* Makes images perfectly square */
+    --grid-columns-desktop: 3; /* Change this to 4 or 5 for smaller, more packed images */
+    --grid-columns-mobile: 2;  /* Change this to 1 for a single massive column on phones */
 }
 
 /* ==========================================
@@ -60,6 +62,11 @@ body {
 }
 /* --- 1. HEADER --- */
 .site-header {
+    position: fixed; /* Makes the header float */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures it stays above all images */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -100,22 +107,16 @@ body {
 /* --- 3. FEATURED PRODUCTS --- */
 .product-grid {
     display: grid;
-    /* This automatically creates columns that adapt to screen size */
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(var(--grid-columns-desktop), 1fr);
     gap: var(--grid-gap);
+    margin-top: 40px;
 }
 
-.product-card {
-    border-radius: var(--product-border-radius); /* Uses your 12px setting */
-    overflow: hidden;
-    aspect-ratio: var(--product-aspect-ratio); /* Forces the square shape */
-    background-color: #eee;
-}
-
-.product-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures images fill the square without stretching */
+/* Mobile override for the grid */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(var(--grid-columns-mobile), 1fr);
+    }
 }
 
 /* --- 5. INFO BAR --- */
