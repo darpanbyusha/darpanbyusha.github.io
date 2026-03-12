@@ -79,14 +79,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--header-padding);
+    padding: var(--header-padding); /* This will pull your 15px 50px setting */
     
-    /* The Apple Frosted Glass Treatment */
-    background-color: rgba(255, 255, 255, 0.75); /* Pure white at 75% opacity */
-    backdrop-filter: blur(16px); /* The main blurring effect */
-    -webkit-backdrop-filter: blur(16px); /* Crucial for Apple/Safari support */
-    
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* A very subtle, soft border line */
+    /* Extreme Frosted Glass Treatment */
+    background: rgba(237, 237, 237, 0.6);
+    backdrop-filter: blur(15px) saturate(500%);
+    -webkit-backdrop-filter: blur(15px) saturate(500%);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border: none;
 }
 .site-logo {
     height: var(--logo-height, 60px); /* Adjust this value to make it bigger/smaller */
