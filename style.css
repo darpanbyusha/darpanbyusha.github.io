@@ -16,7 +16,7 @@ body {
     --info-bar-bg: #eae0d5;
 
     /* Desktop Settings */
-    --header-padding: 10px 50px;
+    --header-padding: 15px 50px;
     --section-padding: 80px 10%;
     --logo-height: 40px; /* Shrinks the logo slightly so it doesn't push the header open */
     --logo-font-size: 32px;
