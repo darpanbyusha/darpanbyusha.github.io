@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* ==========================================
    DARPAN THEME SETTINGS
@@ -6,8 +6,8 @@
 :root {
     /* --- 1. GLOBAL FONTS --- */
     --font-body: 'Montserrat', sans-serif;
-    --font-heading: 'Bodoni Moda', serif;
-    --font-subheading: 'Bodoni Moda', serif;
+    --font-heading: 'Libre Bodoni', serif;
+    --font-subheading: 'Libre Bodoni', serif;
     --font-accent: 'Montserrat', sans-serif;
 
     /* --- 2. TYPOGRAPHY (Font, Size, Case) --- */
