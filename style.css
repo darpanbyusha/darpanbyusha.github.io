@@ -1,0 +1,33 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: #fffaf5; /* Soft, elegant off-white */
+    color: #222;
+    overflow-x: hidden;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 10%;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+.logo { font-family: 'Playfair Display'; font-weight: 700; letter-spacing: 2px; }
+
+ul { display: flex; list-style: none; gap: 30px; }
+a { text-decoration: none; color: #222; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+
+#hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 { font-family: 'Playfair Display'; font-size: 4rem; line-height: 1.1; margin-bottom: 20px; color: #8b0000; }
