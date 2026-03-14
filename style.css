@@ -418,7 +418,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 /* --- Left Side: Images --- */
 .lookbook-image-side { 
     width: 100%;
-    max-width: 500px; /* 1. Restricting width naturally restricts the 4:5 height! */
+    max-width: 550px; /* 1. Restricting width naturally restricts the 4:5 height! */
     aspect-ratio: 4 / 5; 
     position: relative; 
     overflow: hidden; 
@@ -433,15 +433,16 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     height: 100%; 
     object-fit: cover; 
     
-    /* 3. Ultra-smooth, cinematic breathing animation */
+    /* The Luxury Fix: Barely zoomed in (1.02 instead of 1.05) and a slow ease-out */
     opacity: 0; 
     transform: scale(1.02); 
-    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), transform 1.5s cubic-bezier(0.25, 1, 0.5, 1); 
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out; 
+    z-index: 1;
 }
 
 .lookbook-img.active { 
     opacity: 1; 
-    transform: scale(1); 
+    transform: scale(1); /* Glides perfectly into place */
     z-index: 2;
 }
 
