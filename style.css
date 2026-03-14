@@ -292,18 +292,42 @@ ul {
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
 }
-/* --- LATEST DESIGNS: TEXT & WISHLIST --- */
+/* ==========================================
+   9. FAVOURITES, CARDS & TOAST NOTIFICATION
+========================================== */
+
+/* --- LATEST DESIGNS: CARDS & TEXT --- */
 .design-card { position: relative; }
 
-/* The Text Layout */
-.design-info { margin-top: 15px; text-align: left; }
-.archive-ref { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.5; margin-bottom: 4px; }
-.design-info h4 { font-size: 1.125rem; margin-bottom: 4px; }
-.craft-note { font-size: 0.75rem; color: var(--gold); font-style: italic; }
+.design-info { 
+    margin-top: 15px; 
+    text-align: left; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; /* Forces everything strictly to the left */
+    justify-content: flex-start;
+    gap: 2px; /* Tightens the gap between name and archive number */
+}
 
-/* The Heart Button */
+.design-name { 
+    font-size: 1.125rem; 
+    font-family: var(--font-body); 
+    margin: 0 !important; /* The !important nuke destroys any old top-padding */
+    padding: 0 !important;
+    line-height: 1.2;
+}
+
+.archive-ref { 
+    font-size: 0.65rem; 
+    text-transform: uppercase; 
+    letter-spacing: 0.15em; 
+    opacity: 0.5; 
+    margin: 0; 
+}
+
+/* --- THE HEART BUTTON & ANIMATION --- */
 .wishlist-btn {
-    position: absolute;
+    position: absolute; /* This brings your heart back to the top right! */
     top: 15px;
     right: 15px;
     background: rgba(255, 255, 255, 0.9);
@@ -315,63 +339,23 @@ ul {
     justify-content: center;
     cursor: pointer;
     color: var(--brown);
-    transition: transform 0.3s ease, background-color 0.3s ease;
     z-index: 10;
+    overflow: visible; /* Required so the confetti burst isn't cut off */
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .wishlist-btn:hover {
-    transform: scale(1.05);
     background: var(--white);
+    transform: scale(1.05);
 }
 
 .wishlist-btn svg {
     width: 18px;
     height: 18px;
-    transition: fill 0.3s ease, stroke 0.3s ease;
+    z-index: 2; 
+    position: relative; 
+    transition: all 0.3s ease;
 }
-
-/* The Active State (When Clicked/Saved) */
-.wishlist-btn.active svg {
-    fill: var(--copper);
-    stroke: var(--copper);
-}
-/* --- LATEST DESIGNS TEXT --- */
-.design-info { 
-    margin-top: 15px; 
-    text-align: left; 
-    display: flex; 
-    flex-direction: column; 
-    gap: 4px; /* Adjust this number to bring the text closer or further apart */
-}
-
-.design-name { 
-    font-size: 1.125rem; 
-    font-family: var(--font-body); 
-    margin: 0; /* This kills the annoying default browser top-padding! */
-    line-height: 1.2;
-}
-
-.archive-ref { 
-    font-size: 0.65rem; 
-    text-transform: uppercase; 
-    letter-spacing: 0.15em; 
-    opacity: 0.5; 
-    margin: 0; /* Keeps it perfectly flush with the name */
-}
-
-/* --- HEADER FAVOURITES BADGE --- */
-.favourites-btn { position: relative; display: flex; align-items: center; cursor: pointer; }
-.fav-count {
-    position: absolute; top: -8px; right: -12px;
-    background-color: var(--gold); color: var(--brown);
-    font-size: 0.6rem; font-weight: 700;
-    padding: 2px 6px; /* Strict rectangular badge */
-    display: flex; align-items: center; justify-content: center;
-}
-
-/* --- THE HEART ANIMATION & BURST --- */
-.wishlist-btn { position: relative; overflow: visible; }
-.wishlist-btn svg { z-index: 2; position: relative; transition: all 0.3s ease; }
 
 /* The beating pop effect when filled with Ruby Red */
 .wishlist-btn.active svg {
@@ -406,6 +390,16 @@ ul {
                     -22px 15px 0 0 rgba(155,17,30,0), -22px -15px 0 0 rgba(155,17,30,0); 
         opacity: 0; 
     }
+}
+
+/* --- HEADER FAVOURITES BADGE --- */
+.favourites-btn { position: relative; display: flex; align-items: center; cursor: pointer; }
+.fav-count {
+    position: absolute; top: -8px; right: -12px;
+    background-color: var(--gold); color: var(--brown);
+    font-size: 0.6rem; font-weight: 700;
+    padding: 2px 6px; 
+    display: flex; align-items: center; justify-content: center;
 }
 
 /* --- TOAST NOTIFICATION --- */
