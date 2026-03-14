@@ -418,7 +418,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 /* --- Left Side: Images --- */
 .lookbook-image-side { 
     width: 100%;
-    max-width: 600px; /* 1. Restricting width naturally restricts the 4:5 height! */
+    max-width: 500px; /* 1. Restricting width naturally restricts the 4:5 height! */
     aspect-ratio: 4 / 5; 
     position: relative; 
     overflow: hidden; 
