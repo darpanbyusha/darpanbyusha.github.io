@@ -292,3 +292,46 @@ ul {
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
 }
+/* --- LATEST DESIGNS: TEXT & WISHLIST --- */
+.design-card { position: relative; }
+
+/* The Text Layout */
+.design-info { margin-top: 15px; text-align: left; }
+.archive-ref { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.5; margin-bottom: 4px; }
+.design-info h4 { font-size: 1.125rem; margin-bottom: 4px; }
+.craft-note { font-size: 0.75rem; color: var(--gold); font-style: italic; }
+
+/* The Heart Button */
+.wishlist-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--brown);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 10;
+}
+
+.wishlist-btn:hover {
+    transform: scale(1.05);
+    background: var(--white);
+}
+
+.wishlist-btn svg {
+    width: 18px;
+    height: 18px;
+    transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* The Active State (When Clicked/Saved) */
+.wishlist-btn.active svg {
+    fill: var(--copper);
+    stroke: var(--copper);
+}
