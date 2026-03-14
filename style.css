@@ -87,7 +87,7 @@
     --grid-columns-desktop: 4; 
     --grid-columns-mobile: 2;  
     --grid-gap: 15px; 
-    --page-padding-x: 100px; 
+    --page-padding-x: 600px; 
 }
 
 /* COLOUR SCHEME 2 (Dark / Accent) */
@@ -301,7 +301,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 -------------------------------------- */
 .featured-collections { 
     width: 100%; 
-    max-width: 1400px; /* Stops the section from stretching infinitely */
+    max-width: 2000px; /* Stops the section from stretching infinitely */
     margin: 0 auto; /* Keeps the entire block perfectly centred on massive screens */
     padding: 60px var(--page-padding-x); 
 }
@@ -330,7 +330,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 }
 
 .collection-card:hover .collection-image-wrapper {
-    transform: scale(1.015); 
+    transform: scale(1); 
 }
 
 .collection-image-wrapper img {
@@ -355,7 +355,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 -------------------------------------- */
 .featured-products { 
     width: 100%; 
-    max-width: 1400px; /* Matches the collections section width */
+    max-width: 20000px; /* Matches the collections section width */
     margin: 0 auto; /* Keeps it centred */
     padding: 60px var(--page-padding-x); 
 }
@@ -378,7 +378,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 
 /* Added the same subtle hover effect here for consistency! */
 .product-card:hover {
-    transform: scale(1.002);
+    transform: scale(1);
 }
 
 .product-card img { 
