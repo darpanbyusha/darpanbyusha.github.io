@@ -38,6 +38,10 @@
     --h6-font: var(--font-accent);
     --h6-size: 0.875rem;
     --h6-case: uppercase;
+    
+    --h7-font: var(--font-accent);
+    --h7-size: 1rem;
+    --h7-case: none;
 
     /* --- 3. COLOUR SCHEME 1 (Default / Light) --- */
     --bg-colour: #fdfaf6;
