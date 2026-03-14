@@ -355,7 +355,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 -------------------------------------- */
 .featured-products { 
     width: 100%; 
-    max-width: 20000px; /* Matches the collections section width */
+    max-width: 2000px; /* Matches the collections section width */
     margin: 0 auto; /* Keeps it centred */
     padding: 60px var(--page-padding-x); 
 }
