@@ -83,4 +83,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     startAutoPlay();
+    // --- INTERACTIVE LOOKBOOK LOGIC ---
+    const steps = document.querySelectorAll('.lookbook-step');
+    const images = document.querySelectorAll('.lookbook-img');
+
+    steps.forEach(step => {
+        // When the mouse enters a step...
+        step.addEventListener('mouseenter', () => {
+            
+            // 1. Turn off all text steps and all images
+            steps.forEach(s => s.classList.remove('active'));
+            images.forEach(i => i.classList.remove('active'));
+            
+            // 2. Turn on the text step we just hovered over
+            step.classList.add('active');
+            
+            // 3. Find the matching image and fade it in
+            const targetId = step.getAttribute('data-target');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
 });

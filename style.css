@@ -508,7 +508,113 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     .img-front-right { width: 45%; height: 40%; right: 5%; bottom: 5%; border-width: 8px; }
 }
 
+/* ==========================================
+   6. THE INTERACTIVE LOOKBOOK
+========================================== */
+.lookbook-section { 
+    width: 100%; 
+    padding: 100px var(--page-padding-x); 
+}
 
+.lookbook-container { 
+    display: flex; 
+    align-items: center; 
+    max-width: 2000px; 
+    margin: 0 auto; 
+    gap: 80px; 
+}
+
+/* --- Left Side: Images --- */
+.lookbook-image-side { 
+    flex: 1; 
+    position: relative; 
+    aspect-ratio: 4 / 5; 
+    overflow: hidden; 
+    background-color: var(--border-colour);
+}
+
+.lookbook-img { 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    
+    /* The cinematic fade effect */
+    opacity: 0; 
+    transition: opacity 0.8s ease, transform 0.8s ease; 
+    transform: scale(1.03); /* Starts slightly zoomed in */
+}
+
+.lookbook-img.active { 
+    opacity: 1; 
+    transform: scale(1); /* Zooms out perfectly into place */
+    z-index: 2;
+}
+
+/* --- Right Side: Text --- */
+.lookbook-text-side { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+}
+
+.lookbook-steps { 
+    margin-top: 20px; 
+    border-top: 1px solid var(--border-colour); 
+}
+
+.lookbook-step { 
+    padding: 35px 0; 
+    border-bottom: 1px solid var(--border-colour); 
+    cursor: pointer; 
+    transition: all 0.4s ease; 
+    opacity: 0.4; /* Faded out when not active */
+}
+
+.lookbook-step.active { 
+    opacity: 1; /* Full colour when active */
+}
+
+.lookbook-step h3 { 
+    font-family: var(--font-heading); 
+    font-size: 2rem; 
+    transition: color 0.4s ease; 
+}
+
+/* The accordion text hiding trick */
+.lookbook-step p { 
+    max-height: 0; 
+    overflow: hidden; 
+    opacity: 0; 
+    margin-top: 0;
+    color: var(--text-colour);
+    font-size: 1.1rem;
+    transition: max-height 0.5s ease, opacity 0.5s ease, margin-top 0.5s ease; 
+}
+
+.lookbook-step.active p { 
+    max-height: 150px; 
+    opacity: 1; 
+    margin-top: 15px; 
+}
+
+/* --- Mobile Overrides --- */
+@media (max-width: 1024px) { 
+    .lookbook-container { 
+        flex-direction: column; 
+        gap: 50px; 
+    } 
+    .lookbook-image-side { 
+        width: 100%; 
+        max-width: 600px; 
+    } 
+    .lookbook-step h3 {
+        font-size: 1.5rem;
+    }
+}
 
 /* --- 5. FOOTER --- */
 .site-footer { background-color: var(--bg-colour); color: var(--text-colour); padding: 20px 20px; text-align: center; }
