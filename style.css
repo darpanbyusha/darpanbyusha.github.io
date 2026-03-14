@@ -483,9 +483,10 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 }
 
 /* 3. Smooth floating animation for the text */
+/* Smooth, subtle drifting animation for the text */
 .lookbook-step p { 
     position: absolute;
-    top: 65px; /* Pins the text exactly underneath the heading */
+    top: 65px; 
     left: 0;
     margin: 0;
     width: 100%;
@@ -493,15 +494,16 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     font-size: 1.1rem;
     line-height: 1.5;
     
+    /* The Luxury Fix: Drifting just 8px instead of 15px, using ease-out */
     opacity: 0; 
-    transform: translateY(15px); /* Starts slightly lower */
-    transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
-    pointer-events: none; /* Stops the invisible text from interfering with your mouse hover */
+    transform: translateY(8px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+    pointer-events: none; 
 }
 
 .lookbook-step.active p { 
     opacity: 1; 
-    transform: translateY(0); /* Floats up into place */
+    transform: translateY(0); /* Settles softly into place */
 }
 /* --- Lookbook Call to Action Button --- */
 .lookbook-cta {
