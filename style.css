@@ -87,7 +87,7 @@
     --grid-columns-desktop: 4; 
     --grid-columns-mobile: 2;  
     --grid-gap: 15px; 
-    --page-padding-x: 60px; 
+    --page-padding-x: 55px; 
 }
 
 /* COLOUR SCHEME 2 (Dark / Accent) */
@@ -291,8 +291,9 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 
 /* --- 4. GRIDS (Collections & Designs) --- */
 
+/* 4. Reduced gap below the title to tighten the layout */
 .section-title { 
-    margin-bottom: 40px; 
+    margin-bottom: 20px; /* Reduced from 40px */
     text-align: center;
 }
 
@@ -301,9 +302,9 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 -------------------------------------- */
 .featured-collections { 
     width: 100%; 
-    max-width: 2000px; /* Stops the section from stretching infinitely */
-    margin: 0 auto; /* Keeps the entire block perfectly centred on massive screens */
-    padding: 60px var(--page-padding-x); 
+    max-width: 2000px; /* 2. Max width locked */
+    margin: 0 auto; 
+    padding: 60px var(--page-padding-x); /* Pulls your 55px setting */
 }
 
 .collection-grid { 
@@ -326,11 +327,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     overflow: hidden;
     background-color: var(--border-colour);
     margin-bottom: 20px; 
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.collection-card:hover .collection-image-wrapper {
-    transform: scale(1); 
+    /* 1. Hover scale and transitions removed entirely */
 }
 
 .collection-image-wrapper img {
@@ -351,13 +348,13 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 }
 
 /* -------------------------------------
-   B. OUR LATEST DESIGNS (1:1 Ratio) 
+   B. OUR LATEST DESIGNS (4:5 Ratio) 
 -------------------------------------- */
 .featured-products { 
     width: 100%; 
-    max-width: 2000px; /* Matches the collections section width */
-    margin: 0 auto; /* Keeps it centred */
-    padding: 60px var(--page-padding-x); 
+    max-width: 2000px; /* 2. Matches collections exactly */
+    margin: 0 auto; 
+    padding: 60px var(--page-padding-x); /* 3. This will now perfectly obey your 55px setting! */
 }
 
 .product-grid { 
@@ -373,12 +370,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     border-radius: var(--product-border-radius); 
     overflow: hidden; 
     background-color: var(--border-colour); 
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* Added the same subtle hover effect here for consistency! */
-.product-card:hover {
-    transform: scale(1);
+    /* 1. Hover scale and transitions removed entirely */
 }
 
 .product-card img { 
