@@ -412,13 +412,13 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     display: flex; 
     align-items: center; /* Vertically centres the image with the text list */
     justify-content: center;
-    gap: 80px; 
+    gap: 120px; 
 }
 
 /* --- Left Side: Images --- */
 .lookbook-image-side { 
     width: 100%;
-    max-width: 900px; /* 1. Restricting width naturally restricts the 4:5 height! */
+    max-width: 500px; /* 1. Restricting width naturally restricts the 4:5 height! */
     aspect-ratio: 4 / 5; 
     position: relative; 
     overflow: hidden; 
@@ -502,7 +502,13 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     opacity: 1; 
     transform: translateY(0); /* Floats up into place */
 }
-
+/* --- Lookbook Call to Action Button --- */
+.lookbook-cta {
+    width: 100%; /* Forces the container to span the full width of the text side */
+    text-align: center; /* Centres the button perfectly beneath the text */
+    padding-top: 40px; /* Using padding instead of margin guarantees the gap won't collapse */
+    display: block;
+}
 /* --- Mobile Overrides --- */
 @media (max-width: 1024px) { 
     .lookbook-container { 
