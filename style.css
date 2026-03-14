@@ -83,7 +83,7 @@
     
     /* Grid Settings */
     --product-border-radius: 0px; 
-    --product-aspect-ratio: 1 / 1; 
+    --product-aspect-ratio: 4 / 5; 
     --grid-columns-desktop: 4; 
     --grid-columns-mobile: 2;  
     --grid-gap: 15px; 
@@ -296,17 +296,21 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     text-align: center;
 }
 
+/* -------------------------------------
+   A. EXPLORE COLLECTIONS (4:5 Ratio) 
+-------------------------------------- */
 .featured-collections { 
     width: 100%; 
-    padding: 100px var(--page-padding-x); 
+    max-width: 1400px; /* Stops the section from stretching infinitely */
+    margin: 0 auto; /* Keeps the entire block perfectly centred on massive screens */
+    padding: 60px var(--page-padding-x); 
 }
 
 .collection-grid { 
     display: grid; 
-    grid-template-columns: repeat(4, 1fr); /* 1. Four collections in a row */
+    grid-template-columns: repeat(4, 1fr); 
     gap: var(--grid-gap); 
     width: 100%; 
-    /* 2. Removed max-width. It now scales purely based on your 80px/50px/20px padding */
 }
 
 .collection-card { 
@@ -321,17 +325,12 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     border-radius: var(--product-border-radius);
     overflow: hidden;
     background-color: var(--border-colour);
-    margin-bottom: 10px; 
-    
-    /* 4. Shadows removed entirely for a flat, premium look */
-    
-    /* Prepares the smooth, subtle zooming animation */
+    margin-bottom: 20px; 
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* 3. Extremely minor, elegant hover zoom (1.5% scale instead of 3%) */
 .collection-card:hover .collection-image-wrapper {
-    transform: scale(1.005); 
+    transform: scale(1.015); 
 }
 
 .collection-image-wrapper img {
@@ -349,6 +348,62 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 
 .collection-card:hover .collection-title {
     color: var(--link-hover-colour); 
+}
+
+/* -------------------------------------
+   B. OUR LATEST DESIGNS (1:1 Ratio) 
+-------------------------------------- */
+.featured-products { 
+    width: 100%; 
+    max-width: 1400px; /* Matches the collections section width */
+    margin: 0 auto; /* Keeps it centred */
+    padding: 60px var(--page-padding-x); 
+}
+
+.product-grid { 
+    display: grid; 
+    grid-template-columns: repeat(var(--grid-columns-desktop), 1fr); 
+    gap: var(--grid-gap); 
+    width: 100%; 
+}
+
+.product-card { 
+    width: 100%; 
+    aspect-ratio: var(--product-aspect-ratio); 
+    border-radius: var(--product-border-radius); 
+    overflow: hidden; 
+    background-color: var(--border-colour); 
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Added the same subtle hover effect here for consistency! */
+.product-card:hover {
+    transform: scale(1.002);
+}
+
+.product-card img { 
+    width: 100%; 
+    height: 100%; 
+    display: block; 
+    object-fit: cover; 
+}
+
+/* -------------------------------------
+   C. GRID MOBILE & TABLET LAYOUTS 
+-------------------------------------- */
+@media (max-width: 1024px) {
+    .collection-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+}
+
+@media (max-width: 768px) { 
+    .collection-grid {
+        grid-template-columns: 1fr; 
+    } 
+    .product-grid { 
+        grid-template-columns: repeat(var(--grid-columns-mobile), 1fr); 
+    }
 }
 
 /* --- 5. FOOTER --- */
