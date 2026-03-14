@@ -335,3 +335,70 @@ ul {
     fill: var(--copper);
     stroke: var(--copper);
 }
+/* --- LATEST DESIGNS TEXT --- */
+.design-info { margin-top: 15px; text-align: left; }
+.design-name { font-size: 1.125rem; font-family: var(--font-body); margin-bottom: 2px; }
+.archive-ref { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.5; }
+
+/* --- HEADER FAVOURITES BADGE --- */
+.favourites-btn { position: relative; display: flex; align-items: center; cursor: pointer; }
+.fav-count {
+    position: absolute; top: -8px; right: -12px;
+    background-color: var(--gold); color: var(--brown);
+    font-size: 0.6rem; font-weight: 700;
+    padding: 2px 6px; /* Strict rectangular badge */
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* --- THE HEART ANIMATION & BURST --- */
+.wishlist-btn { position: relative; overflow: visible; }
+.wishlist-btn svg { z-index: 2; position: relative; transition: all 0.3s ease; }
+
+/* The beating pop effect when filled with Ruby Red */
+.wishlist-btn.active svg {
+    fill: #9B111E; 
+    stroke: #9B111E;
+    animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes heartPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.35); }
+    100% { transform: scale(1); }
+}
+
+/* The Geometric Confetti Burst */
+.wishlist-btn::after {
+    content: ''; position: absolute; top: 50%; left: 50%; width: 6px; height: 6px;
+    background: transparent; transform: translate(-50%, -50%);
+    pointer-events: none; z-index: 1; opacity: 0;
+}
+
+.wishlist-btn.active::after {
+    animation: squareBurst 0.6s ease-out forwards;
+}
+
+@keyframes squareBurst {
+    0% { box-shadow: 0 0 0 0 #9B111E; opacity: 1; }
+    100% { 
+        /* Shoots 6 sharp squares outwards */
+        box-shadow: 0 -25px 0 0 rgba(155,17,30,0), 22px -15px 0 0 rgba(155,17,30,0), 
+                    22px 15px 0 0 rgba(155,17,30,0), 0 25px 0 0 rgba(155,17,30,0), 
+                    -22px 15px 0 0 rgba(155,17,30,0), -22px -15px 0 0 rgba(155,17,30,0); 
+        opacity: 0; 
+    }
+}
+
+/* --- TOAST NOTIFICATION --- */
+.toast-notification {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background-color: var(--brown); color: var(--cream); border: 1px solid var(--gold);
+    padding: 12px 30px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
+    opacity: 0; pointer-events: none; z-index: 100;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.toast-notification.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}

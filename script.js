@@ -55,34 +55,58 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 250); // Matches the CSS transition timing
         });
     });
-    // --- WISHLIST LOGIC (Saves to Browser Memory) ---
-    const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+    // --- FAVOURITES LOGIC & TOAST NOTIFICATION ---
+    const favBtns = document.querySelectorAll('.wishlist-btn');
+    const favCountDisplay = document.getElementById('fav-count');
+    const toast = document.getElementById('toast-container');
 
-    // 1. Load any previously saved designs from the browser's memory
-    let savedDesigns = JSON.parse(localStorage.getItem('darpanWishlist')) || [];
+    // 1. Load saved designs
+    let savedDesigns = JSON.parse(localStorage.getItem('darpanFavourites')) || [];
 
-    wishlistBtns.forEach(btn => {
+    // 2. Update the header counter
+    function updateFavCount() {
+        if(favCountDisplay) {
+            favCountDisplay.innerText = savedDesigns.length;
+        }
+    }
+    updateFavCount();
+
+    // 3. Show the Toast Pop-up
+    function showToast(message) {
+        toast.innerText = message;
+        toast.classList.add('show');
+        
+        // Hide it after 3 seconds
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    favBtns.forEach(btn => {
         const designId = btn.getAttribute('data-design-id');
 
-        // 2. If the user previously saved this design, make the heart solid on page load
+        // Check if already saved on load
         if (savedDesigns.includes(designId)) {
             btn.classList.add('active');
         }
 
-        // 3. Listen for clicks to add/remove from the wishlist
+        // Handle the Click
         btn.addEventListener('click', () => {
             btn.classList.toggle('active');
             
             if (btn.classList.contains('active')) {
-                // Add to memory
+                // Add to memory and show toast
                 savedDesigns.push(designId);
+                showToast("Added to your favourites");
             } else {
-                // Remove from memory
+                // Remove from memory and show toast
                 savedDesigns = savedDesigns.filter(id => id !== designId);
+                showToast("Removed from favourites");
             }
             
-            // 4. Save the updated list back to the browser
-            localStorage.setItem('darpanWishlist', JSON.stringify(savedDesigns));
+            // Save and update counter
+            localStorage.setItem('darpanFavourites', JSON.stringify(savedDesigns));
+            updateFavCount();
         });
     });
 });
