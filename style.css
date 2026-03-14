@@ -107,6 +107,19 @@
     --btn-prim-hover-border: #b5952f;
 }
 
+/* Tablet Layouts */
+@media (max-width: 1024px) {
+    .collection-grid { 
+        grid-template-columns: repeat(2, 1fr); /* 2x2 grid on iPads/Tablets */
+    }
+}
+
+/* Mobile Layouts */
+@media (max-width: 768px) { 
+    .collection-grid {
+        grid-template-columns: 1fr; /* Stacks vertically on phones */
+    }
+}
 @media (max-width: 768px) {
     :root {
         --header-padding: 15px 20px;
@@ -290,18 +303,16 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 
 .collection-grid { 
     display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(4, 1fr); /* 1. Four collections in a row */
     gap: var(--grid-gap); 
     width: 100%; 
-    max-width: 1000px; /* Restricts the grid from getting too large on big screens */
-    margin: 0 auto; /* Centres the grid perfectly */
+    /* 2. Removed max-width. It now scales purely based on your 80px/50px/20px padding */
 }
 
 .collection-card { 
     text-decoration: none; 
     display: block; 
     text-align: center;
-    /* Removed the old translateY lift from here */
 }
 
 .collection-image-wrapper {
@@ -312,17 +323,15 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     background-color: var(--border-colour);
     margin-bottom: 20px; 
     
-    /* Adds the subtle, elegant shadow */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08); 
+    /* 4. Shadows removed entirely for a flat, premium look */
     
-    /* Prepares the smooth zooming animation */
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease;
+    /* Prepares the smooth, subtle zooming animation */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* The new hover effect: entire frame zooms slightly and shadow deepens */
+/* 3. Extremely minor, elegant hover zoom (1.5% scale instead of 3%) */
 .collection-card:hover .collection-image-wrapper {
-    transform: scale(1.03); 
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); 
+    transform: scale(1.015); 
 }
 
 .collection-image-wrapper img {
@@ -341,6 +350,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
 .collection-card:hover .collection-title {
     color: var(--link-hover-colour); 
 }
+
 /* --- 5. FOOTER --- */
 .site-footer { background-color: var(--bg-colour); color: var(--text-colour); padding: 20px 20px; text-align: center; }
 /* NEW: Styling for the heritage tagline */
