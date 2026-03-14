@@ -436,7 +436,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     /* The Luxury Fix: Barely zoomed in (1.02 instead of 1.05) and a slow ease-out */
     opacity: 0; 
     transform: scale(1.02); 
-    transition: opacity 1.2s ease-out, transform 1.2s ease-out; 
+    transition: opacity 0.45s ease-out, transform 0.45s ease-out; 
     z-index: 1;
 }
 
@@ -497,7 +497,7 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     /* The Luxury Fix: Drifting just 8px instead of 15px, using ease-out */
     opacity: 0; 
     transform: translateY(8px); 
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+    transition: opacity 0.45s ease-out, transform 0.45s ease-out; 
     pointer-events: none; 
 }
 
