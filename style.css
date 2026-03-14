@@ -398,6 +398,118 @@ h6 { font-family: var(--h6-font); font-size: var(--h6-size); text-transform: var
     }
 }
 
+/* ==========================================
+   5. THE DARPAN EXPERIENCE (Magazine Spread)
+========================================== */
+.experience-section {
+    width: 100%;
+    padding: 100px var(--page-padding-x); /* Extra top/bottom padding for breathing room */
+}
+
+.experience-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 2000px;
+    margin: 0 auto;
+    gap: 80px; /* Space between text and images */
+}
+
+.experience-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.text-left {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.experience-text {
+    font-size: 1.1rem;
+    color: var(--text-colour);
+    margin-bottom: 25px;
+}
+
+.experience-text strong {
+    font-family: var(--font-heading); /* Uses Libre Bodoni for the phase names to make them pop */
+    font-size: 1.25rem;
+    font-weight: normal;
+    font-style: italic;
+    color: var(--btn-prim-bg); /* Subtle maroon/accent touch */
+}
+
+/* --- The Collage Grid --- */
+.experience-collage {
+    flex: 1.2; /* Takes up slightly more room than the text */
+    position: relative;
+    height: 650px; /* Fixed height creates the canvas for absolute positioning */
+    width: 100%;
+}
+
+.collage-img {
+    position: absolute;
+    object-fit: cover;
+    border-radius: 0; /* Ensuring sharp, premium corners */
+}
+
+.img-back {
+    width: 55%;
+    height: 85%;
+    right: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.img-front-left {
+    width: 45%;
+    height: 60%;
+    left: 0;
+    top: 20%;
+    z-index: 2;
+    /* This thick border creates a beautiful cutout effect over the back image */
+    border: 15px solid var(--bg-colour); 
+}
+
+.img-front-right {
+    width: 40%;
+    height: 45%;
+    right: 15%;
+    bottom: 0;
+    z-index: 3;
+    border: 15px solid var(--bg-colour);
+}
+
+/* --- Mobile & Tablet Overrides --- */
+@media (max-width: 1024px) {
+    .experience-container {
+        flex-direction: column;
+        gap: 50px;
+    }
+    .experience-content {
+        max-width: 800px;
+        text-align: center;
+    }
+    .text-left {
+        text-align: center;
+    }
+    .experience-collage {
+        height: 500px;
+        width: 100%;
+        max-width: 800px; /* Keeps the collage from getting too wide on iPads */
+    }
+}
+
+@media (max-width: 768px) {
+    .experience-section { padding: 60px var(--page-padding-x); }
+    .experience-collage { height: 400px; }
+    .img-back { width: 65%; height: 75%; }
+    .img-front-left { width: 55%; height: 55%; top: 15%; border-width: 8px; }
+    .img-front-right { width: 45%; height: 40%; right: 5%; bottom: 5%; border-width: 8px; }
+}
+
+
+
 /* --- 5. FOOTER --- */
 .site-footer { background-color: var(--bg-colour); color: var(--text-colour); padding: 20px 20px; text-align: center; }
 /* NEW: Styling for the heritage tagline */
