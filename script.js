@@ -71,13 +71,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     updateFavCount();
 
-    // 3. Show the Toast Pop-up
+// --- TOAST NOTIFICATION LOGIC ---
+    let toastTimer; // Creates an empty variable to hold our timer
+
     function showToast(message) {
         toast.innerText = message;
         toast.classList.add('show');
         
-        // Hide it after 3 seconds
-        setTimeout(() => {
+        // 1. Instantly cancel any old countdowns
+        clearTimeout(toastTimer);
+        
+        // 2. Start a fresh 3-second countdown
+        toastTimer = setTimeout(() => {
             toast.classList.remove('show');
         }, 3000);
     }
