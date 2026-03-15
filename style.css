@@ -214,62 +214,88 @@ ul {
 .design-info h4 { font-size: 1.125rem; font-family: var(--font-body); }
 .price { font-weight: 500; font-size: 1rem; }
 
-/* --- THE DARPAN EXPERIENCE: CLICK ACCORDION --- */
+/* ==========================================
+   5. HE DARPAN EXPERIENCE: LOCKED LAYOUT
+========================================== */
+
+.experience-section { 
+    display: flex; 
+    height: 80vh; /* Locks the section to 80% of the screen height */
+    min-height: 600px; 
+    background-color: var(--brown); 
+    color: var(--cream);
+    overflow: hidden; /* Prevents any "spillover" jumping */
+}
+
+/* Image Side: Forced to stay on the left */
+.experience-img-side { 
+    width: 50%; 
+    height: 100%; 
+    position: relative;
+}
+
+.experience-img-side img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* This is the key: it crops images to fit without resizing the box */
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.8s ease-in-out; 
+}
+
+/* Text Side: Forced to stay on the right */
+.experience-text-side { 
+    width: 50%; 
+    padding: 60px 80px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    overflow-y: auto; /* Just in case your text is long on small screens */
+}
+
+/* The Steps */
 .experience-item { 
-    border-bottom: 1px solid rgba(245, 245, 220, 0.2); 
-    padding-bottom: 24px; 
-    margin-bottom: 24px; 
+    border-bottom: 1px solid rgba(245, 245, 220, 0.15); 
+    padding: 20px 0; 
     cursor: pointer; 
-    transition: border-color 0.6s ease; 
+    transition: all 0.4s ease;
 }
 
 .experience-item h3 { 
-    font-size: 1.5rem; 
+    font-size: 1.4rem; 
     display: flex; 
     align-items: center; 
-    gap: 20px; 
-    transition: color 0.5s ease, transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
+    gap: 15px; 
+    margin: 0;
+    transition: transform 0.4s ease, color 0.4s ease;
 }
 
-.experience-item h3 span { 
-    font-size: 0.875rem; 
-    opacity: 0.5; 
-    font-family: var(--font-body); 
-}
-
-/* The hidden text state */
+/* Fixed Text Height: Prevents the "Jumping" when paragraphs open */
 .experience-item p { 
     max-height: 0; 
-    overflow: hidden; 
     opacity: 0; 
-    font-size: 0.875rem; 
-    color: rgba(245, 245, 220, 0.7); 
-    margin-top: 0; 
-    /* The easing makes the height collapse beautifully and calmly */
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.4s ease; 
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(245, 245, 220, 0.6);
+    transition: max-height 0.5s ease, opacity 0.4s ease, margin-top 0.4s ease;
 }
 
-/* --- THE ACTIVE (CLICKED) STATE --- */
-.experience-item.active {
-    border-bottom-color: var(--gold);
-}
-
-.experience-item.active h3 { 
-    color: var(--gold); 
-    transform: translateX(15px); /* An elegant, editorial indent */
-}
-
+/* ACTIVE STATE */
+.experience-item.active { border-bottom-color: var(--gold); }
+.experience-item.active h3 { color: var(--gold); transform: translateX(10px); }
 .experience-item.active p { 
-    max-height: 120px; /* Safe fixed height to prevent bottom jumping */
+    max-height: 100px; /* Fixed expansion size */
     opacity: 1; 
     margin-top: 15px; 
-    /* Delays the text fade-in slightly so the box opens first */
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease 0.2s, margin-top 0.4s ease; 
 }
 
-/* A faint gold hover so they know it is clickable, but without opening it */
-.experience-item:not(.active):hover h3 {
-    color: rgba(207, 181, 59, 0.6); 
+/* Ensure images don't stack on top of each other weirdly */
+@media (max-width: 1024px) {
+    .experience-section { flex-direction: column; height: auto; }
+    .experience-img-side { width: 100%; height: 400px; }
+    .experience-text-side { width: 100%; padding: 40px var(--pad-x); }
 }
 
 /* ==========================================

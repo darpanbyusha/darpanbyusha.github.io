@@ -37,28 +37,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const experienceItems = document.querySelectorAll('.experience-item');
     const displayImg = document.getElementById('experience-image');
 
-    if (experienceItems.length > 0 && displayImg) {
+    if (experienceItems && displayImg) {
         experienceItems.forEach(item => {
-            // CHANGED from 'mouseenter' to 'click'
             item.addEventListener('click', () => {
-                
-                // If they click the one that is already open, do nothing
-                if (item.classList.contains('active')) return;
-
-                // 1. Close all other items smoothly
+                // 1. Remove active from all
                 experienceItems.forEach(i => i.classList.remove('active'));
                 
-                // 2. Open the clicked item
+                // 2. Add active to clicked
                 item.classList.add('active');
 
-                // 3. Cinematic Image Swap (Slower cross-fade)
+                // 3. Smooth fade swap
                 const newSrc = item.getAttribute('data-img');
                 displayImg.style.opacity = '0';
                 
                 setTimeout(() => {
                     displayImg.src = newSrc;
                     displayImg.style.opacity = '1';
-                }, 400); // 400ms creates a much calmer, heritage feel
+                }, 400); 
             });
         });
     }
