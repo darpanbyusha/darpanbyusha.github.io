@@ -484,13 +484,27 @@ ul {
 .rating-text { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; }
 .text-gold { color: var(--gold); }
 
-.cta-container { max-width: 700px; margin: 0 auto; }
+.cta-container .section-heading {
+    margin-bottom: 25px; /* Creates more space below the title */
+}
 .cta-subtitle { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--gold); display: block; margin-bottom: 20px; }
-.cta-text { font-size: 1rem; opacity: 0.8; margin-bottom: 40px; font-weight: 300; }
+.cta-text {
+    line-height: 2; /* Increases the vertical gap between lines of text */
+    margin-bottom: 35px; /* Pushes the buttons further down */
+    font-size: 1.1rem; /* Slightly enlarges it for an editorial feel */
+}
 .cta-buttons { display: flex; justify-content: center; gap: 20px; }
 
 .btn-solid-gold { display: inline-block; padding: 16px 40px; background-color: var(--gold); color: var(--brown); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem; font-weight: 700; transition: background-color 0.3s ease; }
 .btn-solid-gold:hover { background-color: var(--white); }
+/* --- FIXING THE BROWSER BUTTON GLITCH --- */
+button.btn-solid-gold {
+    border: none !important; /* Kills the default brown browser outline */
+    font-family: inherit; /* Forces it to use your luxury font */
+    font-weight: 400; /* Removes the ugly default bold */
+    outline: none; /* Stops focus rings from appearing when clicked */
+    cursor: pointer;
+}
 
 /* ==========================================
    7. FOOTER
@@ -721,7 +735,6 @@ ul {
 .modal-box {
     background-color: var(--cream);
     padding: 50px 40px;
-    border: 1px solid var(--copper);
     border-radius: 0; /* Sharp, geometric corners */
     max-width: 450px;
     width: 90%;
