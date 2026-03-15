@@ -226,6 +226,73 @@ ul {
 .design-info h4 { font-size: 1.125rem; font-family: var(--font-body); }
 .price { font-weight: 500; font-size: 1rem; }
 
+
+/* --- SERVICES SECTION --- */
+
+/* The 3 Column Layout */
+.grid-3-col { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 60px; /* Generous breathing room between services */
+}
+
+/* The Individual Card */
+.service-card { 
+    text-align: left; 
+    padding: 20px 0; 
+    transition: transform 0.4s ease; 
+}
+
+/* A very subtle lift on hover */
+.service-card:hover { 
+    transform: translateY(-5px); 
+}
+
+/* The Massive Gold Numerals */
+.service-number { 
+    font-size: 4rem; 
+    line-height: 1;
+    display: block; 
+    margin-bottom: 10px; 
+    opacity: 0.3; /* Keeps it subtle like a watermark */
+    transition: opacity 0.4s ease;
+}
+
+.service-card:hover .service-number {
+    opacity: 0.8;
+}
+
+.service-title { 
+    font-size: 1.75rem; 
+    color: var(--brown); 
+    margin-bottom: 15px; 
+    font-weight: 400;
+}
+
+/* The Animated Copper Line */
+.service-line { 
+    width: 0; /* Starts hidden at 0 width */
+    height: 1px; 
+    background-color: var(--copper); 
+    margin-bottom: 20px; 
+    transition: width 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
+}
+
+/* Draws the line completely across when the mouse enters the card */
+.service-card:hover .service-line { 
+    width: 100%; 
+}
+
+.service-desc { 
+    font-size: 0.875rem; 
+    color: rgba(43, 27, 23, 0.8); 
+    line-height: 1.8; 
+}
+
+/* Utility classes used in this section */
+.font-heading { font-family: var(--font-heading); }
+.text-gold { color: var(--gold); }
+
 /* ==========================================
    5. HE DARPAN EXPERIENCE: LOCKED LAYOUT
 ========================================== */
@@ -308,6 +375,8 @@ ul {
     .experience-section { flex-direction: column; height: auto; }
     .experience-img-side { width: 100%; height: 400px; }
     .experience-text-side { width: 100%; padding: 40px var(--pad-x); }
+    .grid-4-col { grid-template-columns: repeat(2, 1fr); }
+    .grid-3-col { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ==========================================
@@ -471,6 +540,8 @@ ul {
     .btn-solid-gold, .btn-outline-light { width: 100%; text-align: center; }
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+    .grid-4-col { grid-template-columns: 1fr; }
+    .grid-3-col { grid-template-columns: 1fr; gap: 40px; } 
 }
 /* ==========================================
    9. FAVOURITES, CARDS & TOAST NOTIFICATION
