@@ -114,50 +114,5 @@ document.addEventListener("DOMContentLoaded", () => {
             updateFavCount();
         });
     });
-    // --- CUSTOM LUXURY CURSOR LOGIC (Forced On) ---
-    const cursorDot = document.getElementById('cursor-dot');
-    const cursorSquare = document.getElementById('cursor-square');
-
-    if (cursorDot && cursorSquare) {
-        let mouseX = 0, mouseY = 0;
-        let squareX = 0, squareY = 0;
-
-        // 1. Track the mouse coordinates
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            // Move the tiny dot instantly
-            cursorDot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-        });
-
-        // 2. The smooth trailing animation loop
-        function animateCursor() {
-            let ease = 0.15; 
-            
-            squareX += (mouseX - squareX) * ease;
-            squareY += (mouseY - squareY) * ease;
-            
-            // Move the square with the calculated delay
-            cursorSquare.style.transform = `translate3d(${squareX}px, ${squareY}px, 0)`;
-            
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // 3. Trigger the Diamond Hover Effect
-        const interactiveElements = document.querySelectorAll('a, button, .menu-toggle-btn, .wishlist-btn, .experience-item');
-        
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursorSquare.classList.add('hovering');
-                cursorDot.style.opacity = '0'; 
-            });
-            
-            el.addEventListener('mouseleave', () => {
-                cursorSquare.classList.remove('hovering');
-                cursorDot.style.opacity = '1'; 
-            });
-        });
-    }
+   
 });
