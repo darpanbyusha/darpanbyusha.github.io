@@ -275,4 +275,32 @@ document.addEventListener("DOMContentLoaded", () => {
     initFavourites();
     initFilters();
 
+// ==========================================
+    // 9. SCROLL TO TOP BUTTON LOGIC
+    // ==========================================
+    const scrollTopBtn = document.getElementById('scroll-to-top');
+
+    if (scrollTopBtn) {
+        // 1. Listen to the window scroll
+        window.addEventListener('scroll', () => {
+            // If the user scrolls down more than 400 pixels, show the button
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                // Otherwise, hide it again
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        // 2. Click action to glide back to the top
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' 
+            });
+        });
+    }
+
+
+
 });
