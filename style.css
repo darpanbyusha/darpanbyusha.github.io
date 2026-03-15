@@ -789,27 +789,27 @@ button.btn-solid-gold {
 }
 
 /* ==========================================
-   LANDSCAPE SERVICES GRID (5:4 RATIO)
+   EDGE-TO-EDGE SERVICES GRID (3:2 FILM RATIO)
 ========================================== */
 
+/* The Breakout Grid: Zero gaps, full width */
 .landscape-services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px; /* An elegant, breathable gap between the frames */
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--pad-x);
+    gap: 0; /* Zero gap between images */
+    width: 100vw; /* Spans the entire screen */
+    margin-left: calc(-50vw + 50%); /* Breaks out of the standard container */
 }
 
+/* The Image Canvas */
 .landscape-card {
     position: relative;
-    aspect-ratio: 5 / 4; /* Forces the perfect landscape shape */
+    aspect-ratio: 3 / 2; /* Classic cinematic film ratio */
     overflow: hidden;
     cursor: pointer;
     background-color: var(--brown);
 }
 
-/* The Background Image */
 .landscape-bg {
     position: absolute;
     inset: 0;
@@ -819,19 +819,19 @@ button.btn-solid-gold {
     transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* The Base Tint (Starts dark enough to read the title) */
+/* The Base Tint */
 .landscape-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(43, 27, 23, 0.9) 0%, rgba(43, 27, 23, 0.2) 60%);
+    background: linear-gradient(to top, rgba(43, 27, 23, 0.95) 0%, rgba(43, 27, 23, 0.1) 60%);
     transition: background 0.6s ease;
 }
 
-/* The Text Container (Anchored to the bottom left) */
+/* Text Container */
 .landscape-content {
     position: absolute;
     inset: 0;
-    padding: 30px;
+    padding: 40px; /* Generous breathing room */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -839,22 +839,25 @@ button.btn-solid-gold {
     z-index: 2;
 }
 
-.landscape-number { font-size: 1.25rem; margin-bottom: 5px; opacity: 0.9; }
-.landscape-title { font-size: 1.75rem; color: var(--cream); margin: 0 0 10px 0; font-weight: 300; transition: transform 0.6s ease; }
+.landscape-number { font-size: 1.25rem; margin-bottom: 5px; opacity: 0.8; }
+.landscape-title { font-size: 1.8rem; color: var(--cream); margin: 0 0 15px 0; font-weight: 300; transition: transform 0.6s ease; }
 
+/* THE BULLETPROOF LINE ANIMATION */
 .landscape-line { 
-    width: 0; 
+    width: 60px; /* Set a fixed width */
     height: 1px; 
     background-color: var(--gold); 
     margin-bottom: 15px; 
-    transition: width 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
+    transform: scaleX(0); /* Hide it by scaling it down to zero */
+    transform-origin: left; /* Make it grow from left to right */
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
 }
 
 /* The Hidden Description */
 .landscape-desc {
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     line-height: 1.6;
-    color: rgba(245, 245, 220, 0.85); /* Cream with slight opacity */
+    color: rgba(245, 245, 220, 0.85);
     max-height: 0;
     opacity: 0;
     margin: 0;
@@ -863,10 +866,10 @@ button.btn-solid-gold {
 }
 
 /* --- THE HOVER INTERACTION --- */
-.landscape-card:hover .landscape-bg { transform: scale(1.06); }
-.landscape-card:hover .landscape-overlay { background: linear-gradient(to top, rgba(43, 27, 23, 0.95) 0%, rgba(43, 27, 23, 0.5) 100%); }
+.landscape-card:hover .landscape-bg { transform: scale(1.05); }
+.landscape-card:hover .landscape-overlay { background: linear-gradient(to top, rgba(43, 27, 23, 0.95) 0%, rgba(43, 27, 23, 0.4) 100%); }
 .landscape-card:hover .landscape-title { transform: translateY(-5px); }
-.landscape-card:hover .landscape-line { width: 50px; }
+.landscape-card:hover .landscape-line { transform: scaleX(1); } /* Glides perfectly into view */
 .landscape-card:hover .landscape-desc { 
     max-height: 120px; 
     opacity: 1; 
@@ -881,8 +884,8 @@ button.btn-solid-gold {
 
 @media (max-width: 768px) {
     .landscape-services-grid { grid-template-columns: 1fr; }
-    .landscape-card { aspect-ratio: 4 / 3; } /* Slightly taller on mobiles for better reading */
-    .landscape-line { width: 40px; }
+    .landscape-card { aspect-ratio: 4 / 3; } /* Slightly taller on mobile */
+    .landscape-line { transform: scaleX(1); width: 40px; } /* Always show line on mobile */
     .landscape-desc { 
         max-height: 120px; 
         opacity: 1; 
