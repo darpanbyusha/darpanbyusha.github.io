@@ -1090,3 +1090,57 @@ button.btn-solid-gold {
     height: 100%;
     object-fit: cover;
 }
+/* ==========================================
+   HEADER COLOUR DYNAMICS (TRANSPARENT VS SOLID)
+========================================== */
+
+/* 1. Default State (Top of Homepage) - Crisp White */
+.site-header {
+    color: var(--white);
+}
+.hamburger-icon span {
+    background-color: var(--white);
+}
+.search-btn svg, 
+.favourites-btn svg {
+    stroke: var(--white);
+}
+.btn-header-contact {
+    color: var(--white);
+    border-color: var(--white);
+}
+
+/* 2. Scrolled Homepage OR Secondary Pages - Deep Brown */
+.site-header.scrolled,
+.site-header.header-solid {
+    color: var(--brown) !important;
+    background-color: var(--white); /* Ensures background is solid */
+}
+
+/* Flips the Hamburger Menu */
+.site-header.scrolled .hamburger-icon span,
+.site-header.header-solid .hamburger-icon span {
+    background-color: var(--brown) !important;
+}
+
+/* Flips the Search and Heart Icons */
+.site-header.scrolled .search-btn svg,
+.site-header.header-solid .search-btn svg,
+.site-header.scrolled .favourites-btn svg,
+.site-header.header-solid .favourites-btn svg {
+    stroke: var(--brown) !important;
+}
+
+/* Flips the Contact Us Button */
+.site-header.scrolled .btn-header-contact,
+.site-header.header-solid .btn-header-contact {
+    color: var(--brown) !important;
+    border-color: var(--brown) !important;
+}
+
+/* Ensures the Heart Counter Text stays readable */
+.site-header.scrolled .fav-count,
+.site-header.header-solid .fav-count {
+    color: var(--cream) !important;
+    background-color: var(--brown) !important;
+}
