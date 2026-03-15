@@ -132,6 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Changes the slide every 4 seconds (4000ms)
         // Change to 3000 if you want it faster, but 4000 is usually best for reading!
-        setInterval(nextSlide, 4000);
+        setInterval(nextSlide, 6000);
     }
 });

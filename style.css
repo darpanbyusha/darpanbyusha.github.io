@@ -234,36 +234,86 @@ ul {
 .border-top-light { border-top: 1px solid rgba(43, 27, 23, 0.1); }
 .border-top-dark { border-top: 1px solid rgba(245, 245, 220, 0.1); }
 
-/* --- TESTIMONIAL SLIDER --- */
-.border-bottom-light { border-bottom: 1px solid rgba(43, 27, 23, 0.1); }
+/* --- VOICES OF ELEGANCE: TESTIMONIAL SLIDER --- */
+
+/* The subtle silk/fabric background texture */
+.texture-bg {
+    background-color: var(--cream);
+    /* This creates a very faint, elegant woven pattern behind the text */
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l10 10M11 1L1 11' stroke='%23B87333' stroke-width='0.5' stroke-opacity='0.05' fill='none'/%3E%3C/svg%3E");
+}
+
+/* Forces the elements to sit above the background texture */
+.relative { position: relative; }
+.z-10 { z-index: 10; }
 
 .testimonial-slider {
     position: relative;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
-    min-height: 280px; /* Keeps the section height stable so the page doesn't jump */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 380px; /* This locks the height so the page never jumps */
 }
 
+/* Using Flexbox to anchor the stars to the top and author to the bottom */
 .testimonial-slide {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
     opacity: 0;
     visibility: hidden;
     transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
     text-align: center;
+    
+    /* The Anchoring Magic */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; 
 }
 
-/* The active slide gently fades into view */
 .testimonial-slide.active {
     opacity: 1;
     visibility: visible;
     position: relative; 
 }
+
+.stars { color: var(--gold); font-size: 1.5rem; letter-spacing: 4px; }
+
+/* The sponge that absorbs the extra space for short reviews */
+.quote-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; 
+    padding: 30px 0;
+}
+
+/* Much larger, editorial review text */
+.testimonial-quote {
+    font-size: 2.25rem; 
+    line-height: 1.4;
+    color: var(--brown);
+    margin: 0;
+    font-weight: 300;
+}
+
+/* The subtle copper accent line dividing the quote and the author */
+.accent-line {
+    width: 40px;
+    height: 1px;
+    background-color: var(--copper);
+    margin: 0 auto 20px auto;
+}
+
+.author-name { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; color: var(--brown); }
+.author-meta { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-top: 5px; }
+
+/* The Bottom Rating Text */
+.mt-large { margin-top: 60px; }
+.rating-text { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; }
+.text-gold { color: var(--gold); }
 
 .cta-container { max-width: 700px; margin: 0 auto; }
 .cta-subtitle { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--gold); display: block; margin-bottom: 20px; }
