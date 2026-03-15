@@ -234,11 +234,36 @@ ul {
 .border-top-light { border-top: 1px solid rgba(43, 27, 23, 0.1); }
 .border-top-dark { border-top: 1px solid rgba(245, 245, 220, 0.1); }
 
-.testimonial-container { max-width: 800px; margin: 0 auto; }
-.stars { color: var(--gold); font-size: 1.5rem; margin-bottom: 30px; letter-spacing: 5px; }
-.testimonial-quote { font-size: 2.5rem; color: var(--brown); margin-bottom: 40px; line-height: 1.4; }
-.author-name { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; color: var(--brown); }
-.author-meta { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-top: 5px; }
+/* --- TESTIMONIAL SLIDER --- */
+.border-bottom-light { border-bottom: 1px solid rgba(43, 27, 23, 0.1); }
+
+.testimonial-slider {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 280px; /* Keeps the section height stable so the page doesn't jump */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonial-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    text-align: center;
+}
+
+/* The active slide gently fades into view */
+.testimonial-slide.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative; 
+}
 
 .cta-container { max-width: 700px; margin: 0 auto; }
 .cta-subtitle { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--gold); display: block; margin-bottom: 20px; }

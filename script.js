@@ -114,5 +114,24 @@ document.addEventListener("DOMContentLoaded", () => {
             updateFavCount();
         });
     });
-   
+   // --- TESTIMONIAL SLIDER LOGIC ---
+    const slides = document.querySelectorAll('.testimonial-slide');
+    let currentSlide = 0;
+
+    if (slides.length > 0) {
+        function nextSlide() {
+            // Fade out the current slide
+            slides[currentSlide].classList.remove('active');
+            
+            // Move to the next slide, or loop back to the start
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Fade in the new slide
+            slides[currentSlide].classList.add('active');
+        }
+        
+        // Changes the slide every 4 seconds (4000ms)
+        // Change to 3000 if you want it faster, but 4000 is usually best for reading!
+        setInterval(nextSlide, 4000);
+    }
 });
