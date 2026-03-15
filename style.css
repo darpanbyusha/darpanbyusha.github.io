@@ -61,6 +61,7 @@ ul {
 .bg-cream { background-color: var(--cream); }
 .bg-white { background-color: var(--white); }
 .bg-brown { background-color: var(--brown); }
+.bg-gold { background-color: var(--gold); }
 
 .section-padding { padding-left: var(--pad-x); padding-right: var(--pad-x); }
 .py-large { padding-top: 100px; padding-bottom: 100px; }
