@@ -416,19 +416,19 @@ ul {
     opacity: 1;
 }
 /* ==========================================
-   10. LUXURY HARDWARE CURSOR (The Bindi & Sparkle)
+   10. LUXURY HARDWARE CURSOR (Crisp & Inverted)
 ========================================== */
 
 @media (pointer: fine) {
     
-    /* 1. The Default Cursor: A minimalist Ruby Red dot (The Bindi) */
+    /* 1. The Razor-Sharp Champagne Gold Arrow */
     body {
-        cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='sh'%3E%3CfeDropShadow dx='0' dy='1' stdDeviation='1.5' flood-color='%23000' flood-opacity='0.2'/%3E%3C/filter%3E%3Ccircle cx='12' cy='12' r='4' fill='%239B111E' filter='url(%23sh)'/%3E%3C/svg%3E") 12 12, auto !important;
+        cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 4 L22 10 L14 14 L10 22 Z' fill='%23D4AF37' stroke='%232B1B17' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 4 4, auto !important;
     }
 
-    /* 2. The Hover State: A Gold Kundan-style 4-pointed sparkle */
+    /* 2. The Inverted Hover Arrow (Deep Brown filled with Gold outline) */
     a, button, input, .menu-toggle-btn, .wishlist-btn, .experience-item {
-        cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='sh'%3E%3CfeDropShadow dx='0' dy='1' stdDeviation='1.5' flood-color='%23000' flood-opacity='0.2'/%3E%3C/filter%3E%3Cpath d='M16 4 C16 13 19 16 28 16 C19 16 16 19 16 28 C16 19 13 16 4 16 C13 16 16 13 16 4 Z' fill='%23CFB53B' filter='url(%23sh)'/%3E%3C/svg%3E") 16 16, pointer !important;
+        cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 4 L22 10 L14 14 L10 22 Z' fill='%232B1B17' stroke='%23D4AF37' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 4 4, pointer !important;
     }
     
     /* Ensure the custom cursor overrides standard text selectors */
