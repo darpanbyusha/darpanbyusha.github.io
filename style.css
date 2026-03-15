@@ -16,7 +16,7 @@ section {
     --copper: #B87333;
     --gold: #CFB53B;
     --white: #FFFFFF;
-    
+    --black: #000000;
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Manrope', sans-serif;
     
@@ -55,6 +55,9 @@ ul {
 .italic { font-style: italic; }
 .text-center { text-align: center; }
 .text-cream { color: var(--cream) !important; }
+.text-brown { color: var(--brown) !important; }
+.text-gold { color: var(--gold) !important; }
+.text-cream { color: var(--cream) !important; }
 .bg-cream { background-color: var(--cream); }
 .bg-white { background-color: var(--white); }
 .bg-brown { background-color: var(--brown); }
@@ -62,6 +65,7 @@ ul {
 .section-padding { padding-left: var(--pad-x); padding-right: var(--pad-x); }
 .py-large { padding-top: 100px; padding-bottom: 100px; }
 .py-medium { padding-top: 60px; padding-bottom: 60px; }
+.py-custom { padding-top: 100px; padding-bottom: 0px; }
 .mb-large { margin-bottom: 60px; }
 .mb-small { margin-bottom: 24px; }
 
