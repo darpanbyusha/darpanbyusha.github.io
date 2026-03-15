@@ -308,7 +308,15 @@ ul {
 .insta-overlay span { color: var(--white); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
 .insta-block:hover img { transform: scale(1.1); }
 .insta-block:hover .insta-overlay { opacity: 1; }
+.insta-overlay i {
+    color: #ffffff;
+    font-size: 2rem; /* Makes the icon nice and clear */
+    transition: transform 0.3s ease;
+}
 
+.insta-block:hover .insta-overlay i {
+    transform: scale(1.1); /* Subtle growth on hover */
+}
 .border-top-light { border-top: 1px solid rgba(43, 27, 23, 0.1); }
 .border-top-dark { border-top: 1px solid rgba(245, 245, 220, 0.1); }
 
