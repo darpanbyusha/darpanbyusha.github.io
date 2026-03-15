@@ -699,3 +699,77 @@ ul {
 .section-subheading a:hover {
     opacity: 0.8;
 }
+/* ==========================================
+   CONTACT MODAL (POP-UP)
+========================================== */
+
+/* The Dark Background Overlay */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(43, 27, 23, 0.85); /* Deep brown semi-transparent tint */
+    z-index: 9999; /* Ensures it sits on top of absolutely everything */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none; /* Prevents clicking when hidden */
+    transition: opacity 0.4s ease;
+}
+
+/* The Straight-Edged Box */
+.modal-box {
+    background-color: var(--cream);
+    padding: 50px 40px;
+    border: 1px solid var(--copper);
+    border-radius: 0; /* Sharp, geometric corners */
+    max-width: 450px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+    transform: translateY(30px); /* Starts slightly lower for a smooth glide up */
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* The Active State (When Opened) */
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-overlay.active .modal-box {
+    transform: translateY(0);
+}
+
+/* The 'X' Close Button */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--brown);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: var(--copper);
+}
+
+/* Typography inside the modal */
+.modal-title { font-size: 2rem; }
+.modal-text { font-size: 0.95rem; color: rgba(43, 27, 23, 0.8); line-height: 1.6; }
+
+/* Utility class to make the buttons stretch full width */
+.w-full { 
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 12px; /* Breathing room between the icon and text */
+}
+
+/* Utility margins */
+.mb-medium { margin-bottom: 30px; }

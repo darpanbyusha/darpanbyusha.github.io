@@ -444,7 +444,7 @@
 
 <!--CALL SECTION-->
 
-<section class="section-padding py-large bg-gold relative texture-bg text-center">
+<section class="section-padding py-large bg-cream relative texture-bg text-center">
             <div class="cta-container">
                 <h2 class="section-heading mb-small">Begin Your Bespoke Journey</h2>
                 
@@ -452,12 +452,17 @@
                     Visit us at our boutique or give us a call to discuss your next garment.<br>
                     We'd be happy to guide you and craft something just for you.
                 </p>
-
-                <div class="cta-buttons">
-                    <a href="#" class="btn-solid-gold">Call Us</a>
-                    <a href="https://wa.me/+919213841471" target="_blank" rel="noopener noreferrer" class="btn-outline-gold">
-                        <i class="fab fa-whatsapp"></i> WhatsApp Us
+                
+                <div class="cta-buttons mt-small">
+                    
+                    <button id="open-contact-popup" class="btn-solid-gold">
+                        Contact Us
+                    </button>
+                    
+                    <a href="https://maps.app.goo.gl/QJRLhpbEAr96PmsB6" target="_blank" rel="noopener noreferrer" class="btn-outline-gold">
+                        Get Directions
                     </a>
+                    
                 </div>
             </div>
         </section>
@@ -503,7 +508,42 @@
             <p>&copy; 2026 DARPAN Luxury. All Rights Reserved.</p>
         </div>
     </footer>
+
+
+
+<!-- POP UP FOR FAVOURITES-->
+
     <div id="toast-container" class="toast-notification">Added to your favourites</div>
     <script src="script.js"></script>
+
+
+
+<!-- POP UP FOR CALL BUTTON-->
+
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-box">
+            
+            <button id="close-modal" class="close-btn" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <h3 class="modal-title italic text-brown mb-small">Get in Touch</h3>
+            <p class="modal-text mb-medium">
+                We would be delighted to assist you. How would you prefer to reach out?
+            </p>
+            
+            <div class="modal-actions">
+                <a href="tel:+919213841471" class="btn-solid-gold w-full mb-small">
+                    <i class="fas fa-phone-alt"></i> Call Us
+                </a>
+                
+                <a href="https://wa.me/919213841471" target="_blank" rel="noopener noreferrer" class="btn-outline-gold w-full">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
+            
+        </div>
+    </div>
+
 </body>
 </html>

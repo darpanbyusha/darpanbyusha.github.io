@@ -136,4 +136,32 @@ document.addEventListener("DOMContentLoaded", () => {
         // Change to 3000 if you want it faster, but 4000 is usually best for reading!
         setInterval(nextSlide, 6000);
     }
+    // --- CONTACT MODAL LOGIC ---
+    const contactModal = document.getElementById('contact-modal');
+    const openModalBtn = document.getElementById('open-contact-popup');
+    const closeModalBtn = document.getElementById('close-modal');
+
+    if (openModalBtn && contactModal && closeModalBtn) {
+        
+        // 1. Open the Modal
+        openModalBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Stops the page from jumping
+            contactModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Freezes background scrolling
+        });
+
+        // 2. Close the Modal (Clicking the 'X')
+        closeModalBtn.addEventListener('click', () => {
+            contactModal.classList.remove('active');
+            document.body.style.overflow = ''; // Unfreezes scrolling
+        });
+
+        // 3. Close the Modal (Clicking the dark background outside the box)
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                contactModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
 });
