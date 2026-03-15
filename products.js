@@ -14,7 +14,7 @@ const darpanDesigns = [
         name: "Banarasi Silk Kurti",
         category: "kurtis",
         collectionName: "Luxury Prêt",
-        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAqX-VxSKO1diZ2dKBgF41Mxts0FP1wlGV3JVh9mdBBr4Wd5aan0D0SX4d9cv5Iw2jPjuA9bePr8d4JXv9USaYx1t84k7BEqXWWrPxyC6nauax3x1tZ-FqfCCwECUyXyzrixdP-XDB_uw8hosdR0p51e-lJ98WvWAnKu89ecVODeR_Z17xyEUUEXlCzIbKvBaIHYOD6LJJbOzdkzthHPTNwmXvt6rvsAPm9JiSzV2sfD-c3CpiTm6SoJiceyNotAhdH2quua1mKn1Q",
+        image: "https://maps.app.goo.gl/DMc1oQKZqG3JgUqF6",
         topRated: true,
         isNew: false
     },
