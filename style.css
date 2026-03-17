@@ -1199,14 +1199,59 @@ button.btn-solid-gold {
         height: 40px;
     }
 }
-/* --- THE SLIDING INTERACTION PANEL --- */
-.qv-text-side { 
-    width: 45%; 
-    position: relative; /* Crucial for holding the absolute sliding views */
-    overflow: hidden; /* Hides the contact buttons when they slide off screen */
+/* ==========================================
+   QUICK VIEW MODAL (SLIDING STATE)
+========================================== */
+
+/* 1. The Main Box Container */
+.qv-box {
+    background-color: var(--cream);
+    width: 95%;
+    max-width: 1000px; 
+    position: relative;
+    transform: translateY(30px);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.15); 
+    border: none;
+    overflow: hidden; /* THE FIRST FIX: Prevents anything from spilling out */
 }
 
-/* The layout for both views */
+.modal-overlay.active .qv-box { 
+    transform: translateY(0); 
+}
+
+/* 2. The Internal Split Layout */
+.qv-content { 
+    display: flex; 
+    width: 100%; 
+    height: 60vh; 
+    min-height: 500px;
+    max-height: 700px;
+}
+
+/* 3. THE IMAGE FIX: Absolute Containment */
+.qv-image-side { 
+    width: 55%; 
+    height: 100%;
+    position: relative; /* Anchors the image */
+    overflow: hidden; 
+}
+
+.qv-image-side img { 
+    position: absolute; /* THE MASTER FIX: Stops the image from dictating the box size */
+    inset: 0;
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+/* 4. THE SLIDING TEXT PANEL */
+.qv-text-side { 
+    width: 45%; 
+    position: relative; 
+    overflow: hidden; 
+}
+
 .qv-view {
     position: absolute;
     inset: 0;
@@ -1219,34 +1264,38 @@ button.btn-solid-gold {
     transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.5s ease;
 }
 
-/* State 1: Details View (Active by default) */
+/* Default Details View */
 #qv-details-view {
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
 }
 
-/* State 2: Contact View (Hidden off to the right) */
+/* Hidden Contact View */
 #qv-contact-view {
     transform: translateX(50px);
     opacity: 0;
     pointer-events: none;
 }
 
-/* --- THE SWAPPED STATE (Triggered by JS) --- */
+/* The Active Swapped State */
 .qv-text-side.show-contact #qv-details-view {
-    transform: translateX(-50px); /* Slides left and fades out */
+    transform: translateX(-50px); 
     opacity: 0;
     pointer-events: none;
 }
 
 .qv-text-side.show-contact #qv-contact-view {
-    transform: translateX(0); /* Glides in from the right */
+    transform: translateX(0); 
     opacity: 1;
     pointer-events: auto;
 }
 
-/* The elegant "Back" button */
+/* Typography & Buttons */
+.qv-collection { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; margin-bottom: 15px; }
+.qv-title { font-size: 2.75rem; margin-bottom: 5px; line-height: 1.1; }
+.qv-view .archive-ref { font-size: 0.75rem; margin-bottom: 50px; }
+
 .back-btn {
     background: none; border: none; font-family: var(--font-body);
     color: var(--gold); font-size: 0.75rem; text-transform: uppercase; 
@@ -1256,8 +1305,17 @@ button.btn-solid-gold {
 
 .back-btn:hover { color: var(--brown); }
 
-/* --- MOBILE PADDING UPDATE --- */
+/* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 768px) {
-    .qv-text-side { width: 100%; height: 50vh; }
-    .qv-view { padding: 40px 30px; } /* Moves the mobile padding to the views */
+    .qv-content { 
+        flex-direction: column; 
+        height: auto;
+        min-height: auto;
+    }
+    .qv-image-side, .qv-text-side { width: 100%; }
+    .qv-image-side { height: 50vh; }
+    .qv-text-side { height: 50vh; }
+    .qv-view { padding: 40px 30px; }
+    .qv-title { font-size: 2.25rem; }
+    .qv-view .archive-ref { margin-bottom: 40px; }
 }
