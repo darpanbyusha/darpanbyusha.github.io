@@ -333,10 +333,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     // --- INITIALISE DYNAMIC FUNCTIONS ---
-    // We run these last so they attach to the freshly built HTML
-    initFavourites();
-    initFilters();
-    // --- INITIALISE DYNAMIC FUNCTIONS ---
     initFavourites();
     initFilters();
     initQuickView(); // ADD THIS NEW LINE HERE!
