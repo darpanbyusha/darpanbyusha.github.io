@@ -270,65 +270,80 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     // ==========================================
-    // 10. QUICK VIEW LOGIC (POST-RENDER)
+    // 10. QUICK VIEW LOGIC (WITH SLIDING STATE)
     // ==========================================
     function initQuickView() {
         const qvModal = document.getElementById('quick-view-modal');
         const closeQvBtn = document.getElementById('close-qv');
         
-        // The elements inside the modal we need to update
+        // Modal Details Elements
         const qvImg = document.getElementById('qv-img');
         const qvTitle = document.getElementById('qv-title');
         const qvCollection = document.getElementById('qv-collection');
         const qvRef = document.getElementById('qv-ref');
         
-        // Grab all the freshly generated design cards
+        // The Sliding Interaction Elements
+        const interactionPanel = document.getElementById('qv-interaction-panel');
+        const showContactBtn = document.getElementById('show-qv-contact');
+        const backToDetailsBtn = document.getElementById('back-to-details');
+        
         const designCards = document.querySelectorAll('.design-card');
         
         if(qvModal && designCards.length > 0) {
+            
+            // 1. OPEN THE MODAL
             designCards.forEach(card => {
                 card.addEventListener('click', (e) => {
-                    // STOP: If they clicked the heart button, do not open the Quick View!
                     if(e.target.closest('.wishlist-btn')) return;
                     
-                    // 1. Find the ID of the clicked garment
                     const wishlistBtn = card.querySelector('.wishlist-btn');
                     if (!wishlistBtn) return;
                     
                     const designId = wishlistBtn.getAttribute('data-design-id');
-                    
-                    // 2. Search your database for the matching dress
                     const designData = darpanDesigns.find(d => d.id === designId);
                     
-                    // 3. If found, inject the details into the modal
                     if(designData) {
-                        qvImg.src = designData.image;
-                        qvTitle.innerText = designData.name;
-                        // Uses the collection name if it exists, otherwise falls back to the category
-                        qvCollection.innerText = designData.collectionName || designData.category; 
-                        qvRef.innerText = `Edition No. ${designData.id}`;
+                        if(qvImg) qvImg.src = designData.image;
+                        if(qvTitle) qvTitle.innerText = designData.name;
+                        if(qvCollection) qvCollection.innerText = designData.collectionName || designData.category; 
+                        if(qvRef) qvRef.innerText = `Edition No. ${designData.id}`;
                         
-                        // 4. Show the modal
+                        // Ensure it always starts on the Details view!
+                        if(interactionPanel) interactionPanel.classList.remove('show-contact');
+                        
                         qvModal.classList.add('active');
-                        document.body.style.overflow = 'hidden'; // Freeze background
+                        document.body.style.overflow = 'hidden'; 
                     }
                 });
             });
             
-            // Close logic for the 'X' button
-            if (closeQvBtn) {
-                closeQvBtn.addEventListener('click', () => {
-                    qvModal.classList.remove('active');
-                    document.body.style.overflow = '';
+            // 2. THE SLIDING PANEL ANIMATION
+            if(showContactBtn && backToDetailsBtn && interactionPanel) {
+                // Slide to Contact Options
+                showContactBtn.addEventListener('click', () => {
+                    interactionPanel.classList.add('show-contact');
+                });
+                
+                // Slide back to Garment Details
+                backToDetailsBtn.addEventListener('click', () => {
+                    interactionPanel.classList.remove('show-contact');
                 });
             }
             
-            // Close logic for clicking the dark overlay
+            // 3. CLOSE THE MODAL (And reset the view)
+            function closeQuickView() {
+                qvModal.classList.remove('active');
+                document.body.style.overflow = '';
+                // Add a tiny delay to reset the slide so they don't see it snapping back as it fades out
+                setTimeout(() => {
+                    if(interactionPanel) interactionPanel.classList.remove('show-contact');
+                }, 400); 
+            }
+
+            if (closeQvBtn) closeQvBtn.addEventListener('click', closeQuickView);
+            
             qvModal.addEventListener('click', (e) => {
-                if (e.target === qvModal) {
-                    qvModal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
+                if (e.target === qvModal) closeQuickView();
             });
         }
     }

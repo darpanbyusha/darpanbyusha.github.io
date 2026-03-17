@@ -441,16 +441,34 @@
                     <img id="qv-img" src="" alt="Design Preview">
                 </div>
                 
-                <div class="qv-text-side bg-cream">
-                    <div class="qv-text-inner">
+                <div class="qv-text-side bg-cream" id="qv-interaction-panel">
+                    
+                    <div id="qv-details-view" class="qv-view active">
                         <p id="qv-collection" class="qv-collection text-gold">Collection Name</p>
                         <h2 id="qv-title" class="qv-title text-brown italic">Design Title</h2>
                         <p id="qv-ref" class="archive-ref mb-large">Edition No. 000</p>
                         
-                        <a href="#" class="btn-solid-gold w-full open-nav-popup">
+                        <button id="show-qv-contact" class="btn-solid-gold w-full">
                             Enquire About This Piece
+                        </button>
+                    </div>
+
+                    <div id="qv-contact-view" class="qv-view">
+                        <button id="back-to-details" class="back-btn mb-small" aria-label="Go Back">
+                            <i class="fas fa-arrow-left"></i> Back to Details
+                        </button>
+                        
+                        <h3 class="qv-title text-brown italic mb-small" style="font-size: 2rem;">Get in Touch</h3>
+                        <p class="qv-desc mb-medium">We would be delighted to assist you with this piece.</p>
+                        
+                        <a href="tel:+919213841471" class="btn-solid-gold w-full mb-small">
+                            <i class="fas fa-phone"></i> Call Us
+                        </a>
+                        <a href="https://wa.me/919213841471" target="_blank" rel="noopener noreferrer" class="btn-outline-gold w-full">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Us
                         </a>
                     </div>
+                    
                 </div>
             </div>
             
