@@ -503,14 +503,31 @@ ul {
 }
 .cta-buttons { display: flex; justify-content: center; gap: 20px; }
 
-.btn-solid-gold { display: inline-block; padding: 16px 40px; background-color: var(--gold); color: var(--brown); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem; font-weight: 700; transition: background-color 0.3s ease; }
-.btn-solid-gold:hover { background-color: var(--white); }
+.btn-solid-gold { 
+    display: inline-block; 
+    padding: 16px 40px; 
+    background-color: var(--gold); 
+    color: var(--brown); 
+    border: 1px solid var(--gold); /* THE FIX: Adds a structural frame */
+    text-transform: uppercase; 
+    letter-spacing: 0.1em; 
+    font-size: 0.875rem; 
+    font-weight: 700; 
+    transition: all 0.3s ease; 
+}
+
+.btn-solid-gold:hover { 
+    background-color: var(--white); 
+    color: var(--brown);
+    border-color: var(--gold); /* Keeps the frame visible against the white modal */
+}
+
 /* --- FIXING THE BROWSER BUTTON GLITCH --- */
 button.btn-solid-gold {
-    border: none !important; /* Kills the default brown browser outline */
-    font-family: inherit; /* Forces it to use your luxury font */
-    font-weight: 400; /* Removes the ugly default bold */
-    outline: none; /* Stops focus rings from appearing when clicked */
+    border: 1px solid var(--gold) !important; /* Forces the frame onto <button> elements */
+    font-family: inherit; 
+    font-weight: 700; 
+    outline: none; 
     cursor: pointer;
 }
 
@@ -1136,6 +1153,13 @@ button.btn-solid-gold {
 .site-header.header-solid .btn-header-contact {
     color: var(--brown) !important;
     border-color: var(--brown) !important;
+}
+
+/* THE FIX: Forces the background to flip to brown and the text to white on hover */
+.site-header.scrolled .btn-header-contact:hover,
+.site-header.header-solid .btn-header-contact:hover {
+    background-color: var(--brown) !important;
+    color: var(--white) !important;
 }
 
 /* Ensures the Heart Counter Text stays readable */
