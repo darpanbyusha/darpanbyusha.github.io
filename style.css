@@ -1203,24 +1203,74 @@ button.btn-solid-gold {
    QUICK VIEW MODAL (SLIDING STATE)
 ========================================== */
 
-/* 1. The Main Box Container */
+/* ==========================================
+   QUICK VIEW MODAL (GHOST FIX & WHITE OUT)
+========================================== */
+
+/* 1. The Strict Dark Background */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(43, 27, 23, 0.85) !important; 
+    z-index: 9999 !important; /* Stays above absolutely everything */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* THE GHOST FIX: Locks opacity, visibility, and clickability together */
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important; 
+    transition: opacity 0.4s ease, visibility 0.4s ease !important;
+}
+
+/* When the JS says "active", everything turns on simultaneously */
+.modal-overlay.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* 2. The Solid White Modal Box */
 .qv-box {
-    background-color: var(--box);
+    background-color: #FFFFFF !important; /* Hardcoded pure white */
     width: 95%;
     max-width: 1000px; 
     position: relative;
-    transform: translateY(30px);
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 0 15px 50px rgba(0,0,0,0.15); 
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2) !important; 
     border: none;
-    overflow: hidden; /* THE FIRST FIX: Prevents anything from spilling out */
+    overflow: hidden; 
+    
+    /* Box specific glide animation */
+    transform: translateY(30px);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease;
 }
 
 .modal-overlay.active .qv-box { 
     transform: translateY(0); 
+    opacity: 1;
 }
 
-/* 2. The Internal Split Layout */
+/* 3. The Close Button (Fixed Z-Index) */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--brown);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 999 !important; /* Forces the 'X' to stay visibly on top of the sliding text */
+}
+
+.close-btn:hover {
+    color: var(--copper);
+}
+
+/* 4. The Internal Split Layout */
 .qv-content { 
     display: flex; 
     width: 100%; 
@@ -1228,6 +1278,7 @@ button.btn-solid-gold {
     min-height: 500px;
     max-height: 700px;
 }
+
 
 /* 3. THE IMAGE FIX: Absolute Containment */
 .qv-image-side { 
