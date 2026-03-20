@@ -347,7 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         if(qvImg) qvImg.src = designData.image;
                         if(qvTitle) qvTitle.innerText = designData.name;
                         if(qvCollection) qvCollection.innerText = designData.collectionName || designData.category; 
-                        if(qvRef) qvRef.innerText = `Edition No. ${designData.id}`;
+                        if(qvRef) qvRef.innerText = designData.id;
                         
                         if(interactionPanel) interactionPanel.classList.remove('show-contact');
                         
