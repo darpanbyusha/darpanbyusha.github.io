@@ -1465,3 +1465,67 @@ button.btn-solid-gold {
     }
     .editorial-title { font-size: 2.5rem; }
 }
+/* ==========================================
+   FULL-SCREEN SEARCH OVERLAY
+========================================== */
+
+.search-modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.98); /* Almost pure white, slightly frosted */
+    z-index: 10000; /* Stays above absolutely everything, even the header */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 120px 5% 50px 5%; /* Pushes content down elegantly */
+    overflow-y: auto;
+    
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.search-modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.search-container {
+    width: 100%;
+    max-width: 1400px;
+    text-align: center;
+}
+
+/* The Invisible Input Field */
+.search-input {
+    width: 100%;
+    max-width: 900px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    color: var(--brown);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-input::placeholder {
+    color: rgba(43, 27, 23, 0.2);
+    font-style: italic;
+}
+
+/* Utility to hide the empty state */
+.d-none {
+    display: none !important;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .search-input { font-size: 2rem; }
+    .search-modal { padding-top: 80px; }
+}

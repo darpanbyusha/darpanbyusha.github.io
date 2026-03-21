@@ -239,6 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
         initFavourites();
         initFilters();
         initQuickView();
+        initSearch();
     }
 
     // THE SPEED FIX: Check if we already downloaded the catalogue this session
@@ -416,6 +417,125 @@ document.addEventListener("DOMContentLoaded", () => {
             
             qvModal.addEventListener('click', (e) => {
                 if (e.target === qvModal) closeQuickView();
+            });
+        }
+    }
+    
+
+    // ==========================================
+    // 11. LIVE SEARCH LOGIC
+    // ==========================================
+    function initSearch() {
+        const searchBtns = document.querySelectorAll('.search-btn');
+        const searchOverlay = document.getElementById('search-overlay');
+        const closeSearchBtn = document.getElementById('close-search');
+        const searchInput = document.getElementById('search-input');
+        const searchResultsGrid = document.getElementById('search-results-grid');
+        const searchEmptyState = document.getElementById('search-empty-state');
+        const clearSearchBtn = document.getElementById('clear-search-btn');
+
+        if (searchBtns.length > 0 && searchOverlay && searchInput) {
+            
+            // 1. OPEN SEARCH
+            searchBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    searchOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    // Automatically click into the text box so they can just start typing
+                    setTimeout(() => searchInput.focus(), 100); 
+                });
+            });
+
+            // 2. CLOSE SEARCH
+            function closeSearch() {
+                searchOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                searchInput.value = ''; 
+                if (searchResultsGrid) searchResultsGrid.innerHTML = ''; 
+                if (searchEmptyState) searchEmptyState.classList.add('d-none');
+            }
+
+            if (closeSearchBtn) closeSearchBtn.addEventListener('click', closeSearch);
+            if (clearSearchBtn) clearSearchBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                searchInput.focus();
+                searchResultsGrid.innerHTML = '';
+                searchEmptyState.classList.add('d-none');
+            });
+
+            // 3. THE REAL-TIME TYPING ENGINE
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+
+                // If they delete their text, clear the screen
+                if (searchTerm === '') {
+                    searchResultsGrid.innerHTML = '';
+                    searchEmptyState.classList.add('d-none');
+                    return;
+                }
+
+                // Search the Google Drive memory for matches in Name, Category, or ID
+                const filteredDesigns = darpanDesigns.filter(design => 
+                    design.name.toLowerCase().includes(searchTerm) ||
+                    design.category.toLowerCase().includes(searchTerm) ||
+                    design.id.toLowerCase().includes(searchTerm)
+                );
+
+                // Display Results or Empty State
+                if (filteredDesigns.length > 0) {
+                    searchResultsGrid.innerHTML = filteredDesigns.map(design => createDesignCardHTML(design)).join('');
+                    searchEmptyState.classList.add('d-none');
+                } else {
+                    searchResultsGrid.innerHTML = '';
+                    searchEmptyState.classList.remove('d-none');
+                }
+            });
+
+            // 4. CLICKING A RESULT (Opens Quick View directly!)
+            searchResultsGrid.addEventListener('click', (e) => {
+                const card = e.target.closest('.design-card');
+                if (!card) return;
+
+                // Stop the heart button from opening the Quick View
+                if (e.target.closest('.wishlist-btn')) {
+                    const btn = e.target.closest('.wishlist-btn');
+                    const designId = btn.getAttribute('data-design-id');
+                    btn.classList.toggle('active');
+                    
+                    let savedDesigns = JSON.parse(localStorage.getItem('darpanFavourites')) || [];
+                    if (btn.classList.contains('active')) {
+                        if (!savedDesigns.includes(designId)) savedDesigns.push(designId);
+                    } else {
+                        savedDesigns = savedDesigns.filter(id => id !== designId);
+                    }
+                    localStorage.setItem('darpanFavourites', JSON.stringify(savedDesigns));
+                    
+                    const favCountDisplay = document.getElementById('fav-count');
+                    if(favCountDisplay) favCountDisplay.innerText = savedDesigns.length;
+                    return; // Stop here so it doesn't open the modal
+                }
+
+                // If they clicked the photo, trigger the Quick View
+                const wishlistBtn = card.querySelector('.wishlist-btn');
+                if (!wishlistBtn) return;
+                
+                const designId = wishlistBtn.getAttribute('data-design-id');
+                const designData = darpanDesigns.find(d => d.id === designId);
+                
+                if (designData) {
+                    document.getElementById('qv-img').src = designData.image;
+                    document.getElementById('qv-title').innerText = designData.name;
+                    document.getElementById('qv-collection').innerText = designData.category;
+                    document.getElementById('qv-ref').innerText = designData.id;
+                    
+                    const interactionPanel = document.getElementById('qv-interaction-panel');
+                    if(interactionPanel) interactionPanel.classList.remove('show-contact');
+
+                    // Magically swap the search overlay for the Quick View overlay
+                    searchOverlay.classList.remove('active');
+                    document.getElementById('quick-view-modal').classList.add('active');
+                }
             });
         }
     }
