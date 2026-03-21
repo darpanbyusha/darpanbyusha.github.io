@@ -1466,22 +1466,22 @@ button.btn-solid-gold {
     .editorial-title { font-size: 2.5rem; }
 }
 /* ==========================================
-   FULL-SCREEN SEARCH OVERLAY
+   FROSTED SEARCH OVERLAY (CONNECTED UX)
 ========================================== */
 
 .search-modal {
     position: fixed;
     inset: 0;
-    background-color: rgba(255, 255, 255, 0.98); /* Almost pure white, slightly frosted */
-    z-index: 10000; /* Stays above absolutely everything, even the header */
+    background-color: rgba(245, 245, 220, 0.85); 
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px); 
+    z-index: 10000; 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding: 120px 5% 50px 5%; /* Pushes content down elegantly */
+    padding: 120px 5% 50px 5%; 
     overflow-y: auto;
-    
-    /* Hidden by default */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -1496,36 +1496,64 @@ button.btn-solid-gold {
 
 .search-container {
     width: 100%;
-    max-width: 1400px;
-    text-align: center;
+    max-width: 1000px; 
+    text-align: left; 
 }
 
-/* The Invisible Input Field */
+/* THE NEW SEARCH BOX */
+.search-input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    border: 1px solid rgba(43, 27, 23, 0.15); /* Faint brown outline */
+    padding: 10px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Soft luxury shadow */
+    transition: all 0.4s ease;
+}
+
+/* Illuminates the box with copper when they click inside it */
+.search-input-wrapper:focus-within {
+    border-color: var(--copper);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+.search-input-icon {
+    color: var(--copper);
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
 .search-input {
     width: 100%;
-    max-width: 900px;
     background: transparent;
     border: none;
     outline: none;
     font-family: var(--font-heading);
-    font-size: 3.5rem;
+    font-size: 2.5rem; /* Scaled down slightly to fit beautifully in the box */
     color: var(--brown);
-    text-align: center;
-    margin-bottom: 20px;
+    padding: 15px 0;
 }
 
 .search-input::placeholder {
-    color: rgba(43, 27, 23, 0.2);
+    color: rgba(43, 27, 23, 0.25);
     font-style: italic;
 }
 
-/* Utility to hide the empty state */
-.d-none {
-    display: none !important;
+.search-modal .close-btn {
+    top: 30px;
+    right: 40px;
+    font-size: 2rem;
 }
+
+.d-none { display: none !important; }
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
-    .search-input { font-size: 2rem; }
-    .search-modal { padding-top: 80px; }
+    .search-input { font-size: 1.5rem; }
+    .search-input-wrapper { padding: 5px 20px; }
+    .search-input-icon { width: 20px; height: 20px; margin-right: 15px; }
+    .search-modal { padding-top: 90px; }
+    .search-modal .close-btn { top: 20px; right: 20px; font-size: 1.5rem; }
 }
