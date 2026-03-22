@@ -1467,149 +1467,71 @@ button.btn-solid-gold {
 }
 
 /* ==========================================
-   PREMIUM MONOCHROME SEARCH OVERLAY
+   HEADER TRANSFORMATION & SEARCH SLIDE
 ========================================== */
 
+/* 1. When the Header goes into 'Search Mode' */
+.header-search-mode {
+    background-color: #FFFFFF !important;
+}
+
+/* Hide normal elements */
+.header-search-mode .menu-toggle-btn,
+.header-search-mode #open-search-btn,
+.header-search-mode .btn-header-contact {
+    display: none !important;
+}
+
+/* Show search elements */
+.header-search-mode .header-search-socials { display: flex !important; gap: 30px; }
+.header-search-mode .header-search-socials a { color: #000000; font-size: 1.25rem; transition: opacity 0.3s; }
+.header-search-mode .header-search-socials a:hover { opacity: 0.5; }
+.header-search-mode #close-search-btn { display: block !important; background: none; border: none; font-size: 1.75rem; color: #000000; cursor: pointer; }
+.header-search-mode #close-search-btn:hover { transform: scale(1.1); }
+
+/* Force Logo and Heart to Black */
+.header-search-mode .site-logo { filter: none !important; }
+.header-search-mode .favourites-btn svg { stroke: #000000 !important; }
+.header-search-mode .fav-count { background-color: #000000 !important; color: #FFFFFF !important; }
+
+/* 2. The Slick White Canvas */
 .search-modal {
     position: fixed;
-    inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background-color: #FFFFFF;
-    z-index: 10000; 
+    z-index: 40; /* Crucial: Sits underneath the main header (50) */
+    padding-top: 130px; /* Leaves space for the header */
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     
-    /* THE FIX 1: The Top-Down Slide Animation */
+    /* The slick, fast animation */
     transform: translateY(-100%);
-    opacity: 0;
     visibility: hidden;
-    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.5s ease;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.4s;
 }
 
 .search-modal.active {
     transform: translateY(0);
-    opacity: 1;
     visibility: visible;
-    pointer-events: auto;
 }
 
-/* --- THE MIRROR HEADER --- */
-/* Matches your main header's exact layout math */
-.search-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px var(--pad-x);
-    width: 100%;
-    margin-bottom: 60px;
-}
+.search-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px 60px 24px; display: flex; flex-direction: column; align-items: center; }
 
-/* Spaced out Social Icons */
-.search-socials { gap: 60px; display: flex; align-items: center; flex: 1; }
-.search-socials a { color: #000000; font-size: 1.25rem; transition: opacity 0.3s; }
-.search-socials a:hover { opacity: 0.5; }
+.premium-search-box { width: 100%; max-width: 600px; border: 1px solid #000000; padding: 18px 25px; margin-bottom: 80px; }
+.premium-search-input { width: 100%; background: transparent; border: none; outline: none; font-family: var(--font-body); font-size: 1rem; color: #000000; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; }
+.premium-search-input::placeholder { color: #000000; opacity: 0.4; }
 
-/* Forces logo and heart to black */
-.search-logo { height: 60px; filter: none !important; margin: 0 auto; display: block; } 
-.search-heart-icon { stroke: #000000 !important; fill: none !important; }
-.search-fav-count { background-color: #000000 !important; color: #FFFFFF !important; } 
+.cta-question { color: #000000; font-family: var(--font-heading); font-size: 1.75rem; line-height: 1.4; margin-bottom: 30px; }
+.search-cta-buttons { display: flex; gap: 20px; justify-content: center; }
 
-.search-controls { gap: 30px; display: flex; align-items: center; justify-content: flex-end; flex: 1; }
-.contact-ghost { width: 120px; display: flex; justify-content: flex-end; } /* Perfect Contact Us size */
-
-.close-search-btn {
-    background: none;
-    border: none;
-    font-size: 1.75rem;
-    color: #000000;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-.close-search-btn:hover { transform: scale(1.1); }
-
-/* --- THE SEARCH BOX --- */
-.search-container {
-    width: 100%;
-    max-width: 1200px; 
-    margin: 0 auto;
-    padding: 0 24px 60px 24px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.premium-search-box {
-    width: 100%;
-    max-width: 600px; 
-    border: 1px solid #000000;
-    padding: 18px 25px;
-    margin-bottom: 80px;
-}
-
-.premium-search-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-family: var(--font-body);
-    font-size: 1rem;
-    color: #000000;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-.premium-search-input::placeholder {
-    color: #000000;
-    opacity: 0.4;
-}
-
-/* --- THE CTA BUTTONS --- */
-.cta-question {
-    color: #000000;
-    font-family: var(--font-heading);
-    font-size: 1.75rem;
-    line-height: 1.4;
-    margin-bottom: 30px;
-}
-
-.search-cta-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.btn-black-outline {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 35px;
-    border: 1px solid #000000;
-    color: #000000;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-size: 0.75rem;
-    font-weight: 700;
-    background: transparent;
-    transition: all 0.3s ease;
-}
-
+.btn-black-outline { display: inline-flex; align-items: center; gap: 10px; padding: 14px 35px; border: 1px solid #000000; color: #000000; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 700; background: transparent; transition: all 0.3s ease; }
 .btn-black-outline:hover { background-color: #000000; color: #FFFFFF; }
 .d-none { display: none !important; }
 
-/* Mobile */
 @media (max-width: 768px) {
-    /* Kept exactly the same padding as the main header to prevent jumping */
-    .search-header { padding: 24px var(--pad-x); margin-bottom: 40px; } 
-    
-    /* Reduced gaps slightly to fit mobile screens */
-    .search-socials { gap: 20px; } 
-    .search-controls { gap: 20px; } 
-    
-    /* Shrunk the ghost block so the close button fits, but DID NOT hide it! */
-    .contact-ghost { width: 30px; } 
-    
+    .header-search-socials { gap: 15px; }
     .cta-question { font-size: 1.35rem; }
-    .search-cta-buttons { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+    .search-cta-buttons { flex-direction: column; max-width: 300px; margin: 0 auto; }
     .btn-black-outline { width: 100%; justify-content: center; }
 }

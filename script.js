@@ -424,55 +424,71 @@ document.addEventListener("DOMContentLoaded", () => {
     
 
     // ==========================================
-    // 11. LIVE SEARCH LOGIC
+    // 11. LIVE SEARCH LOGIC (SLIDE FROM BEHIND)
     // ==========================================
     function initSearch() {
-        const searchBtns = document.querySelectorAll('.search-btn');
+        const mainHeader = document.getElementById('main-header');
+        const openSearchBtn = document.getElementById('open-search-btn');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+        const headerLogoLink = document.getElementById('header-logo-link');
+        
         const searchOverlay = document.getElementById('search-overlay');
-        const closeSearchBtn = document.getElementById('close-search');
-        const closeSearchLogo = document.getElementById('close-search-logo'); // The new Logo trigger
         const searchInput = document.getElementById('search-input');
         const searchResultsGrid = document.getElementById('search-results-grid');
         const searchEmptyState = document.getElementById('search-empty-state');
 
-        if (searchBtns.length > 0 && searchOverlay && searchInput) {
+        if (openSearchBtn && searchOverlay && searchInput) {
             
             // 1. OPEN SEARCH
-            searchBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    
-                    // Measure the scrollbar width
-                    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-                    
-                    // Stop the body and the main header from jumping
-                    document.body.style.paddingRight = `${scrollbarWidth}px`;
-                    const mainHeader = document.getElementById('main-header');
-                    if (mainHeader) {
-                        mainHeader.style.paddingRight = `calc(var(--pad-x) + ${scrollbarWidth}px)`;
-                    }
-                    
-                    searchOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    setTimeout(() => searchInput.focus(), 100); 
-                });
+            openSearchBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Prevent scrolling & layout shift
+                const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                document.body.style.paddingRight = `${scrollbarWidth}px`;
+                mainHeader.style.paddingRight = `calc(var(--pad-x) + ${scrollbarWidth}px)`;
+                document.body.style.overflow = 'hidden';
+                
+                // Trigger the header transformation and slide-down canvas
+                mainHeader.classList.add('header-search-mode');
+                searchOverlay.classList.add('active');
+                
+                setTimeout(() => searchInput.focus(), 100); 
             });
 
             // 2. CLOSE SEARCH
             function closeSearch() {
                 searchOverlay.classList.remove('active');
+                mainHeader.classList.remove('header-search-mode');
                 
-                // Wait for the slide-up animation to finish before restoring scrollbars
+                // Wait for the slick slide-up animation to finish before restoring scrollbars
                 setTimeout(() => {
                     document.body.style.overflow = '';
                     document.body.style.paddingRight = ''; 
-                    const mainHeader = document.getElementById('main-header');
-                    if (mainHeader) mainHeader.style.paddingRight = '';
-                }, 500);
+                    mainHeader.style.paddingRight = '';
+                }, 400);
                 
                 searchInput.value = ''; 
                 if (searchResultsGrid) searchResultsGrid.innerHTML = ''; 
                 if (searchEmptyState) searchEmptyState.classList.add('d-none');
+            }
+
+            // Bind 'X' button
+            if (closeSearchBtn) {
+                closeSearchBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    closeSearch();
+                });
+            }
+
+            // Bind Logo to close ONLY when in search mode
+            if (headerLogoLink) {
+                headerLogoLink.addEventListener('click', (e) => {
+                    if (mainHeader.classList.contains('header-search-mode')) {
+                        e.preventDefault();
+                        closeSearch();
+                    }
+                });
             }
 
             // 3. REAL-TIME TYPING ENGINE
@@ -538,9 +554,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     const interactionPanel = document.getElementById('qv-interaction-panel');
                     if(interactionPanel) interactionPanel.classList.remove('show-contact');
 
-                    searchOverlay.classList.remove('active');
-                    document.body.style.overflow = '';
-                    document.body.style.paddingRight = ''; 
+                    // Close search and instantly open Quick View
+                    closeSearch();
                     document.getElementById('quick-view-modal').classList.add('active');
                     document.body.style.overflow = 'hidden';
                 }
