@@ -1,12 +1,7 @@
 /* --- SMOOTH SCROLLING & PERFECT SNAPPING --- */
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
+section { scroll-margin-top: 90px; }
 
-/* This creates an invisible bumper so sections don't hide behind your fixed header */
-section {
-    scroll-margin-top: 90px; /* Adjust this number if your header is taller or shorter */
-}
 /* ==========================================
    1. VARIABLES & RESET
 ========================================== */
@@ -20,16 +15,10 @@ section {
     --red: #9b111e;
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Manrope', sans-serif;
-    
     --pad-x: 80px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border-radius: 0 !important; /* Strict sharp edges globally */
-}
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: 0 !important; }
 
 body {
     background-color: var(--cream);
@@ -39,26 +28,15 @@ body {
     line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    font-weight: 400;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-ul {
-    list-style: none;
-}
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); font-weight: 400; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
 
 .italic { font-style: italic; }
 .text-center { text-align: center; }
 .text-cream { color: var(--cream) !important; }
 .text-brown { color: var(--brown) !important; }
 .text-gold { color: var(--gold) !important; }
-.text-cream { color: var(--cream) !important; }
 .bg-cream { background-color: var(--cream); }
 .bg-white { background-color: var(--white); }
 .bg-brown { background-color: var(--brown); }
@@ -74,7 +52,6 @@ ul {
 .mb-large { margin-bottom: 60px; }
 .mb-small { margin-bottom: 24px; }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--cream); }
 ::-webkit-scrollbar-thumb { background: var(--brown); }
@@ -97,38 +74,22 @@ ul {
 .header-left, .header-right { flex: 1; display: flex; align-items: center; gap: 30px; }
 .header-right { justify-content: flex-end; }
 .header-centre { flex: 1; text-align: center; }
-/* --- Taming the Image Logo & Colour Swapping --- */
-.site-logo {
-    height: 60px; 
-    width: auto; 
-    display: block;
-    margin: 0 auto; 
-    
-    /* NEW: Turns your black PNG completely white! */
-    filter: invert(1); 
-    
-    /* Added 'filter' to the transition so it changes colour smoothly */
-    transition: transform 0.4s ease, filter 0.4s ease; 
-}
 
-/* NEW: Returns the logo to its natural black when the header turns white */
-.site-header.scrolled .site-logo {
-    filter: invert(0); 
+.site-logo {
+    height: 60px; width: auto; display: block; margin: 0 auto; 
+    filter: invert(1); transition: transform 0.4s ease, filter 0.4s ease; 
 }
+.site-header.scrolled .site-logo { filter: invert(0); }
 
 .logo { font-size: 2rem; letter-spacing: 0.2em; font-weight: 700; font-family: var(--font-heading); }
 .header-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
 
-/* Unified Menu Button */
-.menu-toggle-btn {
-    display: flex; align-items: center; gap: 12px; background: none; border: none; cursor: pointer; color: inherit;
-}
+.menu-toggle-btn { display: flex; align-items: center; gap: 12px; background: none; border: none; cursor: pointer; color: inherit; }
 .hamburger-icon { display: flex; flex-direction: column; gap: 6px; }
 .hamburger-icon span { width: 30px; height: 1px; background-color: currentColor; display: block; transition: width 0.3s ease; }
 .hamburger-icon span:nth-child(2) { width: 20px; }
-.menu-toggle-btn:hover .hamburger-icon span:nth-child(2) { width: 30px; } /* Elegant hover effect */
+.menu-toggle-btn:hover .hamburger-icon span:nth-child(2) { width: 30px; } 
 
-/* Search & Contact */
 .search-btn { background: none; border: none; color: inherit; cursor: pointer; display: flex; align-items: center; }
 .btn-header-contact {
     border: 1px solid currentColor; padding: 10px 24px; font-size: 0.75rem; 
@@ -137,17 +98,13 @@ ul {
 .btn-header-contact:hover { background-color: var(--white); color: var(--brown); }
 .site-header.scrolled .btn-header-contact:hover { background-color: var(--brown); color: var(--white); }
 
-/* --- THE SLIDE-OUT MENU --- */
-.menu-overlay {
-    position: fixed; inset: 0; background: rgba(43, 27, 23, 0.7); z-index: 90; 
-    opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
-}
+.menu-overlay { position: fixed; inset: 0; background: rgba(43, 27, 23, 0.7); z-index: 90; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
 .menu-overlay.active { opacity: 1; pointer-events: auto; }
 
 .side-menu {
     position: fixed; top: 0; left: 0; width: 100%; max-width: 480px; height: 100vh;
     background-color: var(--cream); color: var(--brown); z-index: 100;
-    transform: translateX(-100%); transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1); /* Cinematic slide */
+    transform: translateX(-100%); transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1); 
     display: flex; flex-direction: column; padding: 60px var(--pad-x); overflow-y: auto;
 }
 .side-menu.active { transform: translateX(0); }
@@ -159,14 +116,9 @@ ul {
 .side-menu-links { display: flex; flex-direction: column; gap: 35px; }
 .side-menu-links a { font-family: var(--font-heading); font-size: 2.5rem; transition: color 0.3s ease; }
 .side-menu-links a:hover { color: var(--gold); }
-/* --- ACTIVE PAGE HIGHLIGHT --- */
-.side-menu-links a.current-page {
-    color: var(--gold);
-    pointer-events: none; /* Stops the hover effect and prevents clicking */
-}
+.side-menu-links a.current-page { color: var(--gold); pointer-events: none; }
 
 .side-menu-divider { width: 100%; height: 1px; background-color: rgba(43, 27, 23, 0.1); margin: 50px 0; }
-
 .side-menu-contact .contact-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 15px; font-weight: 700; }
 .side-menu-contact p { font-size: 0.875rem; opacity: 0.7; margin-bottom: 8px; }
 .mt-small { margin-top: 30px; display: block; text-align: center; }
@@ -186,28 +138,16 @@ ul {
 .hero-subtitle { text-transform: uppercase; letter-spacing: 0.4em; font-size: 0.875rem; margin-bottom: 20px; }
 .hero-title { font-size: 5rem; margin-bottom: 40px; }
 
-.btn-outline-light {
-    display: inline-block; padding: 16px 40px; border: 1px solid var(--white);
-    color: var(--white); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;
-    transition: all 0.3s ease;
-}
+.btn-outline-light { display: inline-block; padding: 16px 40px; border: 1px solid var(--white); color: var(--white); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem; transition: all 0.3s ease; }
 .btn-outline-light:hover { background-color: var(--white); color: var(--brown); }
 
-.btn-outline-gold {
-    display: inline-block; padding: 16px 40px; border: 1px solid var(--gold);
-    color: var(--brown); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem;
-    transition: all 0.3s ease;
-}
+.btn-outline-gold { display: inline-block; padding: 16px 40px; border: 1px solid var(--gold); color: var(--brown); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem; transition: all 0.3s ease; }
 .btn-outline-gold:hover { background-color: var(--gold); color: var(--brown); }
 
-.scroll-indicator {
-    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--white); opacity: 0.7;
-}
+.scroll-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--white); opacity: 0.7; }
 .scroll-indicator span { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; }
 .scroll-line { width: 1px; height: 50px; background: rgba(255,255,255,0.3); position: relative; overflow: hidden; }
 .scroll-line-inner { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--white); animation: scrollLine 2s infinite ease-in-out; }
-
 @keyframes scrollLine { 0% { transform: translateY(-100%); } 100% { transform: translateY(100%); } }
 
 /* ==========================================
@@ -222,7 +162,6 @@ ul {
 .link-underline:hover { border-color: var(--gold); }
 
 .grid-4-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-
 .img-4x5 { aspect-ratio: 4 / 5; overflow: hidden; position: relative; margin-bottom: 15px; }
 .img-4x5 img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
 .collection-card:hover .img-4x5 img { transform: scale(1.05); }
@@ -235,158 +174,32 @@ ul {
 .design-info h4 { font-size: 1.125rem; font-family: var(--font-body); }
 .price { font-weight: 500; font-size: 1rem; }
 
-
-/* --- SERVICES SECTION --- */
-
 /* The 3 Column Layout */
-.grid-3-col { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 60px; /* Generous breathing room between services */
-}
+.grid-3-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
+.service-card { text-align: left; padding: 20px 0; transition: transform 0.4s ease; }
+.service-card:hover { transform: translateY(-5px); }
+.service-number { font-size: 4rem; line-height: 1; display: block; margin-bottom: 10px; opacity: 0.3; transition: opacity 0.4s ease; }
+.service-card:hover .service-number { opacity: 0.8; }
+.service-title { font-size: 1.75rem; color: var(--brown); margin-bottom: 15px; font-weight: 400; }
+.service-line { width: 0; height: 1px; background-color: var(--copper); margin-bottom: 20px; transition: width 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.service-card:hover .service-line { width: 100%; }
+.service-desc { font-size: 0.875rem; color: rgba(43, 27, 23, 0.8); line-height: 1.8; }
 
-/* The Individual Card */
-.service-card { 
-    text-align: left; 
-    padding: 20px 0; 
-    transition: transform 0.4s ease; 
-}
-
-/* A very subtle lift on hover */
-.service-card:hover { 
-    transform: translateY(-5px); 
-}
-
-/* The Massive Gold Numerals */
-.service-number { 
-    font-size: 4rem; 
-    line-height: 1;
-    display: block; 
-    margin-bottom: 10px; 
-    opacity: 0.3; /* Keeps it subtle like a watermark */
-    transition: opacity 0.4s ease;
-}
-
-.service-card:hover .service-number {
-    opacity: 0.8;
-}
-
-.service-title { 
-    font-size: 1.75rem; 
-    color: var(--brown); 
-    margin-bottom: 15px; 
-    font-weight: 400;
-}
-
-/* The Animated Copper Line */
-.service-line { 
-    width: 0; /* Starts hidden at 0 width */
-    height: 1px; 
-    background-color: var(--copper); 
-    margin-bottom: 20px; 
-    transition: width 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
-}
-
-/* Draws the line completely across when the mouse enters the card */
-.service-card:hover .service-line { 
-    width: 100%; 
-}
-
-.service-desc { 
-    font-size: 0.875rem; 
-    color: rgba(43, 27, 23, 0.8); 
-    line-height: 1.8; 
-}
-
-/* Utility classes used in this section */
 .font-heading { font-family: var(--font-heading); }
-.text-gold { color: var(--gold); }
 
 /* ==========================================
-   5. HE DARPAN EXPERIENCE: LOCKED LAYOUT
+   5. HE DARPAN EXPERIENCE
 ========================================== */
-
-.experience-section { 
-    display: flex; 
-    height: 80vh; /* Locks the section to 80% of the screen height */
-    min-height: 600px; 
-    background-color: var(--brown); 
-    color: var(--cream);
-    overflow: hidden; /* Prevents any "spillover" jumping */
-}
-
-/* Image Side: Forced to stay on the left */
-.experience-img-side { 
-    width: 50%; 
-    height: 100%; 
-    position: relative;
-}
-
-.experience-img-side img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; /* This is the key: it crops images to fit without resizing the box */
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: opacity 0.8s ease-in-out; 
-}
-
-/* Text Side: Forced to stay on the right */
-.experience-text-side { 
-    width: 50%; 
-    padding: 60px 80px; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center;
-    overflow-y: auto; /* Just in case your text is long on small screens */
-}
-
-/* The Steps */
-.experience-item { 
-    border-bottom: 1px solid rgba(245, 245, 220, 0.15); 
-    padding: 20px 0; 
-    cursor: pointer; 
-    transition: all 0.4s ease;
-}
-
-.experience-item h3 { 
-    font-size: 1.4rem; 
-    display: flex; 
-    align-items: center; 
-    gap: 15px; 
-    margin: 0;
-    transition: transform 0.4s ease, color 0.4s ease;
-}
-
-/* Fixed Text Height: Prevents the "Jumping" when paragraphs open */
-.experience-item p { 
-    max-height: 0; 
-    opacity: 0; 
-    margin: 0;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: rgba(245, 245, 220, 0.6);
-    transition: max-height 0.5s ease, opacity 0.4s ease, margin-top 0.4s ease;
-}
-
-/* ACTIVE STATE */
+.experience-section { display: flex; height: 80vh; min-height: 600px; background-color: var(--brown); color: var(--cream); overflow: hidden; }
+.experience-img-side { width: 50%; height: 100%; position: relative; }
+.experience-img-side img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; transition: opacity 0.8s ease-in-out; }
+.experience-text-side { width: 50%; padding: 60px 80px; display: flex; flex-direction: column; justify-content: center; overflow-y: auto; }
+.experience-item { border-bottom: 1px solid rgba(245, 245, 220, 0.15); padding: 20px 0; cursor: pointer; transition: all 0.4s ease; }
+.experience-item h3 { font-size: 1.4rem; display: flex; align-items: center; gap: 15px; margin: 0; transition: transform 0.4s ease, color 0.4s ease; }
+.experience-item p { max-height: 0; opacity: 0; margin: 0; font-size: 0.9rem; line-height: 1.6; color: rgba(245, 245, 220, 0.6); transition: max-height 0.5s ease, opacity 0.4s ease, margin-top 0.4s ease; }
 .experience-item.active { border-bottom-color: var(--gold); }
 .experience-item.active h3 { color: var(--gold); transform: translateX(10px); }
-.experience-item.active p { 
-    max-height: 100px; /* Fixed expansion size */
-    opacity: 1; 
-    margin-top: 15px; 
-}
-
-/* Ensure images don't stack on top of each other weirdly */
-@media (max-width: 1024px) {
-    .experience-section { flex-direction: column; height: auto; }
-    .experience-img-side { width: 100%; height: 400px; }
-    .experience-text-side { width: 100%; padding: 40px var(--pad-x); }
-    .grid-4-col { grid-template-columns: repeat(2, 1fr); }
-    .grid-3-col { grid-template-columns: repeat(2, 1fr); }
-}
+.experience-item.active p { max-height: 100px; opacity: 1; margin-top: 15px; }
 
 /* ==========================================
    6. INSTAGRAM & TESTIMONIALS & CTA
@@ -398,150 +211,43 @@ ul {
 .insta-overlay span { color: var(--white); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
 .insta-block:hover img { transform: scale(1.1); }
 .insta-block:hover .insta-overlay { opacity: 1; }
-.insta-overlay i {
-    color: #ffffff;
-    font-size: 2rem; /* Makes the icon nice and clear */
-    transition: transform 0.3s ease;
-}
+.insta-overlay i { color: #ffffff; font-size: 2rem; transition: transform 0.3s ease; }
+.insta-block:hover .insta-overlay i { transform: scale(1.1); }
 
-.insta-block:hover .insta-overlay i {
-    transform: scale(1.1); /* Subtle growth on hover */
-}
 .border-top-light { border-top: 1px solid rgba(43, 27, 23, 0.1); }
 .border-top-dark { border-top: 1px solid rgba(245, 245, 220, 0.1); }
 
-/* --- VOICES OF ELEGANCE: TESTIMONIAL SLIDER --- */
-
-.texture-bg {
-    background-color: var(--cream);
-    background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l10 10M11 1L1 11' stroke='%23B87333' stroke-width='0.5' stroke-opacity='0.05' fill='none'/%3E%3C/svg%3E");
-}
-
+.texture-bg { background-color: var(--cream); background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l10 10M11 1L1 11' stroke='%23B87333' stroke-width='0.5' stroke-opacity='0.05' fill='none'/%3E%3C/svg%3E"); }
 .relative { position: relative; }
 .z-10 { z-index: 10; }
 
-/* Forces the gap between the copper line and the subheading */
-.divider-copper { 
-    width: 100px; 
-    height: 1px; 
-    background-color: var(--copper); 
-    margin: 0 auto 20px auto; 
-}
-
-/* THE ANTI-JUMP SLIDER GRID */
-.testimonial-slider {
-    max-width: 900px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas: "slide-stack"; /* Stacks all slides in the exact same spot */
-}
-
-.testimonial-slide {
-    grid-area: slide-stack;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.8s ease-in-out; /* Pure, glitch-free opacity fade */
-    text-align: center;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.testimonial-slide.active {
-    opacity: 1;
-    pointer-events: auto;
-    z-index: 2;
-}
-
+.testimonial-slider { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr; grid-template-areas: "slide-stack"; }
+.testimonial-slide { grid-area: slide-stack; opacity: 0; pointer-events: none; transition: opacity 0.8s ease-in-out; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.testimonial-slide.active { opacity: 1; pointer-events: auto; z-index: 2; }
 .stars { color: var(--gold); font-size: 1.5rem; letter-spacing: 4px; }
-
-/* THE LOCKED HEIGHT BOX */
-/* This stops the names from jumping. It forces the text area to be exactly 140px tall always */
-.quote-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 140px; 
-    width: 100%;
-    margin: 20px 0;
-}
-
-.testimonial-quote {
-    font-size: 2rem; /* Slightly refined size to sit beautifully in the locked box */
-    line-height: 1.4;
-    color: var(--brown);
-    margin: 0;
-    font-weight: 300;
-}
-
-.accent-line {
-    width: 40px;
-    height: 1px;
-    background-color: var(--copper);
-    margin: 0 auto 20px auto;
-}
-
+.quote-wrapper { display: flex; align-items: center; justify-content: center; height: 140px; width: 100%; margin: 20px 0; }
+.testimonial-quote { font-size: 2rem; line-height: 1.4; color: var(--brown); margin: 0; font-weight: 300; }
+.accent-line { width: 40px; height: 1px; background-color: var(--copper); margin: 0 auto 20px auto; }
 .author-name { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; color: var(--brown); margin-bottom: 4px; }
 .author-meta { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin: 0; }
 
-.mt-large { margin-top: 40px; } /* Reduced from 60px to tighten up the bottom */
-
-/* Enlarged Rating Text */
+.mt-large { margin-top: 40px; }
 .rating-text { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; }
-.text-gold { color: var(--gold); }
 
-.cta-container .section-heading {
-    margin-bottom: 25px; /* Creates more space below the title */
-}
+.cta-container .section-heading { margin-bottom: 25px; }
 .cta-subtitle { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--gold); display: block; margin-bottom: 20px; }
-.cta-text {
-    line-height: 2; /* Increases the vertical gap between lines of text */
-    margin-bottom: 35px; /* Pushes the buttons further down */
-    font-size: 1.1rem; /* Slightly enlarges it for an editorial feel */
-}
+.cta-text { line-height: 2; margin-bottom: 35px; font-size: 1.1rem; }
 .cta-buttons { display: flex; justify-content: center; gap: 20px; }
 
-.btn-solid-gold { 
-    display: inline-block; 
-    padding: 16px 40px; 
-    background-color: var(--gold); 
-    color: var(--brown); 
-    border: 1px solid var(--gold); /* THE FIX: Adds a structural frame */
-    text-transform: uppercase; 
-    letter-spacing: 0.1em; 
-    font-size: 0.875rem; 
-    font-weight: 700; 
-    transition: all 0.3s ease; 
-}
-
-.btn-solid-gold:hover { 
-    background-color: var(--white); 
-    color: var(--brown);
-    border-color: var(--gold); /* Keeps the frame visible against the white modal */
-}
-
-/* --- FIXING THE BROWSER BUTTON GLITCH --- */
-button.btn-solid-gold {
-    border: 1px solid var(--gold) !important; /* Forces the frame onto <button> elements */
-    font-family: inherit; 
-    font-weight: 700; 
-    outline: none; 
-    cursor: pointer;
-}
+.btn-solid-gold { display: inline-block; padding: 16px 40px; background-color: var(--gold); color: var(--brown); border: 1px solid var(--gold); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem; font-weight: 700; transition: all 0.3s ease; }
+.btn-solid-gold:hover { background-color: var(--white); color: var(--brown); border-color: var(--gold); }
+button.btn-solid-gold { border: 1px solid var(--gold) !important; font-family: inherit; font-weight: 700; outline: none; cursor: pointer; }
 
 /* ==========================================
    7. FOOTER
 ========================================== */
 .footer-grid { display: grid; grid-template-columns: 2.5fr 1fr 1fr 1.5fr; gap: 30px; margin-bottom: 80px; }
-.footer-logo {
-    max-width: 180px; /* keeps it proportional */
-    height: auto;
-    display: block;
-    margin-bottom: 12px;
-    filter: invert(100%);
-}
+.footer-logo { max-width: 180px; height: auto; display: block; margin-bottom: 12px; filter: invert(100%); }
 .footer-brand p { font-size: 1rem; opacity: 0.8; max-width: 400px; }
 .footer-links h5, .footer-newsletter h5 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.4; margin-bottom: 24px; }
 .footer-links li { margin-bottom: 15px; font-size: 0.875rem; }
@@ -552,19 +258,214 @@ button.btn-solid-gold {
 .newsletter-form input { background: transparent; border: none; outline: none; color: var(--cream); flex: 1; font-family: var(--font-body); font-size: 0.875rem; }
 .newsletter-form input::placeholder { color: rgba(245, 245, 220, 0.3); }
 .newsletter-form button { background: none; border: none; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; cursor: pointer; }
-
 .footer-bottom { display: flex; justify-content: space-between; padding-top: 30px; border-top: 1px solid rgba(245, 245, 220, 0.1); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; }
 
 /* ==========================================
-   8. RESPONSIVE MEDIA QUERIES
+   9. FAVOURITES, CARDS & TOAST NOTIFICATION
+========================================== */
+.design-card { position: relative; }
+.design-info { margin-top: 15px; text-align: left; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 2px; }
+.design-name { font-size: 1.125rem; font-family: var(--font-body); margin: 0 !important; padding: 0 !important; line-height: 1.2; }
+.archive-ref { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.5; margin: 0; }
+
+.wishlist-btn { position: absolute; top: 15px; right: 15px; background: rgba(255, 255, 255, 0.9); border: none; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--brown); z-index: 10; overflow: visible; transition: transform 0.3s ease, background-color 0.3s ease; }
+.wishlist-btn:hover { background: var(--white); transform: scale(1.05); }
+.wishlist-btn svg { width: 18px; height: 18px; z-index: 2; position: relative; transition: all 0.3s ease; }
+.wishlist-btn.active svg { fill: #9b111e; stroke: #9B111E; animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+@keyframes heartPop { 0% { transform: scale(1); } 50% { transform: scale(1.35); } 100% { transform: scale(1); } }
+
+.wishlist-btn::after { content: ''; position: absolute; top: 50%; left: 50%; width: 6px; height: 6px; background: transparent; transform: translate(-50%, -50%); pointer-events: none; z-index: 1; opacity: 0; }
+.wishlist-btn.active::after { animation: squareBurst 0.6s ease-out forwards; }
+@keyframes squareBurst { 0% { box-shadow: 0 0 0 0 #9B111E; opacity: 1; } 100% { box-shadow: 0 -25px 0 0 rgba(155,17,30,0), 22px -15px 0 0 rgba(155,17,30,0), 22px 15px 0 0 rgba(155,17,30,0), 0 25px 0 0 rgba(155,17,30,0), -22px 15px 0 0 rgba(155,17,30,0), -22px -15px 0 0 rgba(155,17,30,0); opacity: 0; } }
+
+.favourites-btn { position: relative; display: flex; align-items: center; cursor: pointer; }
+.fav-count { position: absolute; top: -8px; right: -12px; background-color: var(--gold); color: var(--brown); font-size: 0.6rem; font-weight: 700; padding: 2px 6px; display: flex; align-items: center; justify-content: center; }
+
+.toast-notification { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background-color: var(--brown); color: var(--cream); border: 1px solid var(--gold); padding: 12px 30px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0; pointer-events: none; z-index: 100; transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+.toast-notification.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* ==========================================
+   10. LUXURY HARDWARE CURSOR
+========================================== */
+@media (pointer: fine) {
+    body { cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 4 L22 10 L14 14 L10 22 Z' fill='%23D4AF37' stroke='%232B1B17' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 4 4, auto !important; }
+    a, button, input, .menu-toggle-btn, .wishlist-btn, .experience-item { cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 4 L22 10 L14 14 L10 22 Z' fill='%232B1B17' stroke='%23D4AF37' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 4 4, pointer !important; }
+    p, h1, h2, h3, h4, h5, h6, span { cursor: inherit; }
+}
+
+/* ==========================================
+   CONTACT MODAL (POP-UP)
+========================================== */
+.modal-overlay { position: fixed; inset: 0; background-color: rgba(43, 27, 23, 0.85); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+.modal-box { background-color: var(--white); padding: 50px 40px; border-radius: 0; max-width: 450px; width: 90%; position: relative; text-align: center; transform: translateY(30px); transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-overlay.active .modal-box { transform: translateY(0); }
+.close-btn { position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 1.5rem; color: var(--brown); cursor: pointer; transition: color 0.3s ease; z-index: 100; }
+.close-btn:hover { color: var(--copper); }
+.modal-title { font-size: 2rem; }
+.modal-text { font-size: 0.95rem; color: rgba(43, 27, 23, 0.8); line-height: 1.6; }
+.w-full { width: 100%; display: flex; justify-content: center; align-items: center; gap: 12px; }
+
+/* ==========================================
+   EDGE-TO-EDGE SERVICES GRID
+========================================== */
+.landscape-services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; width: 100vw; margin-left: calc(-50vw + 50%); }
+.landscape-card { position: relative; aspect-ratio: 3 / 2; overflow: hidden; cursor: pointer; background-color: var(--brown); }
+.landscape-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.landscape-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(43, 27, 23, 0.95) 0%, rgba(43, 27, 23, 0.1) 60%); transition: background 0.6s ease; }
+.landscape-content { position: absolute; inset: 0; padding: 40px; display: flex; flex-direction: column; justify-content: flex-end; text-align: left; z-index: 2; }
+.landscape-number { font-size: 1.25rem; margin-bottom: 5px; opacity: 0.8; }
+.landscape-title { font-size: 1.8rem; color: var(--cream); margin: 0 0 15px 0; font-weight: 300; transition: transform 0.6s ease; }
+.landscape-line { width: 60px; height: 1px; background-color: var(--gold); margin-bottom: 15px; transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.landscape-desc { font-size: 0.9rem; line-height: 1.6; color: rgba(245, 245, 220, 0.85); max-height: 0; opacity: 0; margin: 0; transform: translateY(15px); transition: max-height 0.6s ease, opacity 0.5s ease, transform 0.5s ease; }
+.landscape-card:hover .landscape-bg { transform: scale(1.05); }
+.landscape-card:hover .landscape-overlay { background: linear-gradient(to top, rgba(43, 27, 23, 0.95) 0%, rgba(43, 27, 23, 0.4) 100%); }
+.landscape-card:hover .landscape-title { transform: translateY(-5px); }
+.landscape-card:hover .landscape-line { transform: scaleX(1); } 
+.landscape-card:hover .landscape-desc { max-height: 120px; opacity: 1; transform: translateY(0); margin-top: 5px; }
+
+/* ==========================================
+   DESIGN PAGE CSS
+========================================== */
+.header-solid { background-color: var(--white); border-bottom: 1px solid rgba(43, 27, 23, 0.05); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); }
+.header-solid .nav-link, .header-solid .logo-text { color: var(--brown) !important; }
+.pt-vlarge { padding-top: 140px; } 
+.max-w-screen { max-width: 1400px; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.filter-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; }
+.filter-btn { background: none; border: none; font-family: var(--font-heading); font-size: 1.1rem; color: rgba(43, 27, 23, 0.5); cursor: pointer; padding-bottom: 5px; border-bottom: 1px solid transparent; transition: all 0.3s ease; }
+.filter-btn:hover, .filter-btn.active { color: var(--brown); border-bottom-color: var(--copper); }
+.gallery-item { transition: transform 0.4s ease, opacity 0.4s ease; }
+.gallery-item.hidden { display: none; }
+.header-solid .site-logo { filter: none !important; }
+.header-solid .search-btn svg, .header-solid .favourites-btn svg { stroke: var(--black) !important; }
+.header-solid .hamburger-icon span { background-color: var(--black) !important; }
+.header-solid .fav-count { background-color: var(--gold) !important; color: var(--brown) !important; }
+.pt-gallery { padding-top: 120px; padding-bottom: 80px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+/* HEADER DYNAMICS */
+.site-header { color: var(--white); }
+.hamburger-icon span { background-color: var(--white); }
+.search-btn svg, .favourites-btn svg { stroke: var(--white); }
+.btn-header-contact { color: var(--white); border-color: var(--white); }
+.site-header.scrolled, .site-header.header-solid { color: var(--brown) !important; background-color: var(--white); }
+.site-header.scrolled .hamburger-icon span, .site-header.header-solid .hamburger-icon span { background-color: var(--brown) !important; }
+.site-header.scrolled .search-btn svg, .site-header.header-solid .search-btn svg, .site-header.scrolled .favourites-btn svg, .site-header.header-solid .favourites-btn svg { stroke: var(--brown) !important; }
+.site-header.scrolled .btn-header-contact, .site-header.header-solid .btn-header-contact { color: var(--brown) !important; border-color: var(--brown) !important; }
+.site-header.scrolled .btn-header-contact:hover, .site-header.header-solid .btn-header-contact:hover { background-color: var(--brown) !important; color: var(--white) !important; }
+.site-header.scrolled .fav-count, .site-header.header-solid .fav-count { color: var(--brown) !important; background-color: var(--gold) !important; }
+
+.scroll-to-top-btn { position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px; background-color: var(--gold); color: var(--brown); border: none; cursor: pointer; z-index: 98; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transform: translateY(20px); transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.scroll-to-top-btn.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.scroll-to-top-btn:hover { background-color: var(--brown); color: var(--gold); }
+.scroll-to-top-btn svg { width: 22px; height: 22px; transition: stroke 0.3s ease; }
+
+/* ==========================================
+   QUICK VIEW MODAL
+========================================== */
+.qv-box { background-color: #FFFFFF !important; width: 95%; max-width: 1000px; position: relative; box-shadow: 0 15px 50px rgba(0,0,0,0.2) !important; border: none; overflow: hidden; transform: translateY(30px); opacity: 0; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease; }
+.modal-overlay.active .qv-box { transform: translateY(0); opacity: 1; }
+.qv-content { display: flex; width: 100%; height: 60vh; min-height: 500px; max-height: 700px; }
+.qv-image-side { width: 55%; height: 100%; position: relative; overflow: hidden; }
+.qv-image-side img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.qv-text-side { width: 45%; position: relative; overflow: hidden; }
+.qv-view { position: absolute; inset: 0; padding: 0 10%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left; transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.5s ease; }
+#qv-details-view { transform: translateX(0); opacity: 1; pointer-events: auto; }
+#qv-contact-view { transform: translateX(50px); opacity: 0; pointer-events: none; }
+.qv-text-side.show-contact #qv-details-view { transform: translateX(-50px); opacity: 0; pointer-events: none; }
+.qv-text-side.show-contact #qv-contact-view { transform: translateX(0); opacity: 1; pointer-events: auto; }
+.qv-collection { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; margin-bottom: 15px; }
+.qv-title { font-size: 2.75rem; margin-bottom: 5px; line-height: 1.1; }
+.qv-view .archive-ref { font-size: 0.75rem; margin-bottom: 50px; }
+.back-btn { background: none; border: none; font-family: var(--font-body); color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 0; transition: color 0.3s ease; }
+.back-btn:hover { color: var(--brown); }
+
+/* ==========================================
+   EDITORIAL ZIG-ZAG LOOKBOOKS (4:5 RATIO)
+========================================== */
+.editorial-showcase { display: flex; align-items: center; margin-bottom: 0; }
+.editorial-showcase:nth-child(even) { flex-direction: row-reverse; }
+.editorial-img { width: 50%; aspect-ratio: 4 / 5; position: relative; overflow: hidden; flex-shrink: 0; }
+.editorial-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
+.editorial-showcase:hover .editorial-img img { transform: scale(1.05); }
+.editorial-text { width: 50%; padding: 0 8%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; text-align: left; }
+.editorial-number { font-size: 1.25rem; font-weight: 700; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 15px; }
+.editorial-title { font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px; color: var(--brown); }
+.editorial-desc { font-size: 1rem; line-height: 1.8; opacity: 0.8; margin-bottom: 40px; }
+
+/* ==========================================
+   HEADER TRANSFORMATION & SEARCH SLIDE
+========================================== */
+.header-search-mode { background-color: #FFFFFF !important; }
+.header-search-mode .menu-toggle-btn, .header-search-mode #open-search-btn, .header-search-mode .btn-header-contact { display: none !important; }
+.header-search-mode .header-search-socials { display: flex !important; gap: 30px; }
+.header-search-mode .header-search-socials a { color: #000000; font-size: 1.25rem; transition: opacity 0.3s; }
+.header-search-mode .header-search-socials a:hover { opacity: 0.5; }
+.header-search-mode #close-search-btn { display: block !important; background: none; border: none; font-size: 1.75rem; color: #000000; cursor: pointer; }
+.header-search-mode #close-search-btn:hover { transform: scale(1.1); }
+.header-search-mode .site-logo { filter: none !important; }
+.header-search-mode .favourites-btn svg { stroke: #000000 !important; }
+.header-search-mode .fav-count { background-color: #000000 !important; color: #FFFFFF !important; }
+
+/* The Slick White Canvas */
+.search-modal {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #FFFFFF;
+    z-index: 40; /* Crucial: Sits underneath the main header (50) */
+    padding-top: 130px; 
+    display: flex; flex-direction: column; overflow-y: auto;
+    transform: translateY(-100%);
+    visibility: hidden;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.4s;
+}
+.search-modal.active { transform: translateY(0); visibility: visible; }
+
+.search-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px 60px 24px; display: flex; flex-direction: column; align-items: center; }
+
+/* THE FIX: Search box styling with flex for the icon */
+.premium-search-box { 
+    width: 100%; max-width: 600px; border: 1px solid #000000; 
+    padding: 18px 25px; margin-bottom: 80px; 
+    display: flex; align-items: center; 
+}
+.search-input-icon { color: #000000; margin-right: 20px; flex-shrink: 0; }
+.premium-search-input { width: 100%; background: transparent; border: none; outline: none; font-family: var(--font-body); font-size: 1rem; color: #000000; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; }
+.premium-search-input::placeholder { color: #000000; opacity: 0.4; }
+
+.cta-question { color: #000000; font-family: var(--font-heading); font-size: 1.75rem; line-height: 1.4; margin-bottom: 30px; }
+.search-cta-buttons { display: flex; gap: 20px; justify-content: center; }
+
+.btn-black-outline { display: inline-flex; align-items: center; gap: 10px; padding: 14px 35px; border: 1px solid #000000; color: #000000; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 700; background: transparent; transition: all 0.3s ease; }
+.btn-black-outline:hover { background-color: #000000; color: #FFFFFF; }
+
+/* --- BOTTOM CLOSE BUTTON (Hidden on Desktop) --- */
+.close-search-bottom-btn {
+    display: none; width: 100%; padding: 16px; background-color: #000000; color: #FFFFFF; border: none; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.875rem; font-weight: 700; cursor: pointer; margin-top: 40px; transition: background-color 0.3s ease;
+}
+.close-search-bottom-btn:hover { background-color: var(--brown); }
+
+.d-none { display: none !important; }
+
+/* ==========================================
+   MOBILE QUERIES
 ========================================== */
 @media (max-width: 1024px) {
     .grid-4-col { grid-template-columns: repeat(2, 1fr); }
-    .experience-section { flex-direction: column; }
-    .experience-img-side, .experience-text-side { width: 100%; }
-    .experience-img-side { height: 400px; }
-    .experience-text-side { padding: 60px var(--pad-x); }
+    .landscape-services-grid { grid-template-columns: repeat(2, 1fr); }
+    .experience-section { flex-direction: column; height: auto; }
+    .experience-img-side { width: 100%; height: 400px; }
+    .experience-text-side { width: 100%; padding: 40px var(--pad-x); }
     .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+    .editorial-showcase, .editorial-showcase:nth-child(even) { flex-direction: column; margin-bottom: 80px; }
+    .editorial-img { width: 100%; }
+    .editorial-text { width: 100%; padding: 40px 20px 0 20px; text-align: center; align-items: center; }
+    .editorial-title { font-size: 2.5rem; }
 }
 
 @media (max-width: 768px) {
@@ -580,958 +481,29 @@ button.btn-solid-gold {
     .btn-solid-gold, .btn-outline-light { width: 100%; text-align: center; }
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
-    .grid-4-col { grid-template-columns: 1fr; }
     .grid-3-col { grid-template-columns: 1fr; gap: 40px; } 
-}
-/* ==========================================
-   9. FAVOURITES, CARDS & TOAST NOTIFICATION
-========================================== */
-
-/* --- LATEST DESIGNS: CARDS & TEXT --- */
-.design-card { position: relative; }
-
-.design-info { 
-    margin-top: 15px; 
-    text-align: left; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; /* Forces everything strictly to the left */
-    justify-content: flex-start;
-    gap: 2px; /* Tightens the gap between name and archive number */
-}
-
-.design-name { 
-    font-size: 1.125rem; 
-    font-family: var(--font-body); 
-    margin: 0 !important; /* The !important nuke destroys any old top-padding */
-    padding: 0 !important;
-    line-height: 1.2;
-}
-
-.archive-ref { 
-    font-size: 0.65rem; 
-    text-transform: uppercase; 
-    letter-spacing: 0.15em; 
-    opacity: 0.5; 
-    margin: 0; 
-}
-
-/* --- THE HEART BUTTON & ANIMATION --- */
-.wishlist-btn {
-    position: absolute; /* This brings your heart back to the top right! */
-    top: 15px;
-    right: 15px;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--brown);
-    z-index: 10;
-    overflow: visible; /* Required so the confetti burst isn't cut off */
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.wishlist-btn:hover {
-    background: var(--white);
-    transform: scale(1.05);
-}
-
-.wishlist-btn svg {
-    width: 18px;
-    height: 18px;
-    z-index: 2; 
-    position: relative; 
-    transition: all 0.3s ease;
-}
-
-/* The beating pop effect when filled with Ruby Red */
-.wishlist-btn.active svg {
-    fill: #9b111e; 
-    stroke: #9B111E;
-    animation: heartPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-
-@keyframes heartPop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.35); }
-    100% { transform: scale(1); }
-}
-
-/* The Geometric Confetti Burst */
-.wishlist-btn::after {
-    content: ''; position: absolute; top: 50%; left: 50%; width: 6px; height: 6px;
-    background: transparent; transform: translate(-50%, -50%);
-    pointer-events: none; z-index: 1; opacity: 0;
-}
-
-.wishlist-btn.active::after {
-    animation: squareBurst 0.6s ease-out forwards;
-}
-
-@keyframes squareBurst {
-    0% { box-shadow: 0 0 0 0 #9B111E; opacity: 1; }
-    100% { 
-        /* Shoots 6 sharp squares outwards */
-        box-shadow: 0 -25px 0 0 rgba(155,17,30,0), 22px -15px 0 0 rgba(155,17,30,0), 
-                    22px 15px 0 0 rgba(155,17,30,0), 0 25px 0 0 rgba(155,17,30,0), 
-                    -22px 15px 0 0 rgba(155,17,30,0), -22px -15px 0 0 rgba(155,17,30,0); 
-        opacity: 0; 
-    }
-}
-
-/* --- HEADER FAVOURITES BADGE --- */
-.favourites-btn { position: relative; display: flex; align-items: center; cursor: pointer; }
-.fav-count {
-    position: absolute; top: -8px; right: -12px;
-    background-color: var(--gold); color: var(--brown);
-    font-size: 0.6rem; font-weight: 700;
-    padding: 2px 6px; 
-    display: flex; align-items: center; justify-content: center;
-}
-
-/* --- TOAST NOTIFICATION --- */
-.toast-notification {
-    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
-    background-color: var(--brown); color: var(--cream); border: 1px solid var(--gold);
-    padding: 12px 30px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
-    opacity: 0; pointer-events: none; z-index: 100;
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.toast-notification.show {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-}
-/* ==========================================
-   10. LUXURY HARDWARE CURSOR (Crisp & Inverted)
-========================================== */
-
-@media (pointer: fine) {
-    
-    /* 1. The Razor-Sharp Champagne Gold Arrow */
-    body {
-        cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 4 L22 10 L14 14 L10 22 Z' fill='%23D4AF37' stroke='%232B1B17' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 4 4, auto !important;
-    }
-
-    /* 2. The Inverted Hover Arrow (Deep Brown filled with Gold outline) */
-    a, button, input, .menu-toggle-btn, .wishlist-btn, .experience-item {
-        cursor: url("data:image/svg+xml;charset=utf-8,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 4 L22 10 L14 14 L10 22 Z' fill='%232B1B17' stroke='%23D4AF37' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 4 4, pointer !important;
-    }
-    
-    /* Ensure the custom cursor overrides standard text selectors */
-    p, h1, h2, h3, h4, h5, h6, span {
-        cursor: inherit;
-    }
-}
-.section-subheading a {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    text-decoration: none;
-    color: inherit;
-}
-
-.section-subheading a:hover {
-    opacity: 0.8;
-}
-/* ==========================================
-   CONTACT MODAL (POP-UP)
-========================================== */
-
-/* The Dark Background Overlay */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(43, 27, 23, 0.85); /* Deep brown semi-transparent tint */
-    z-index: 9999; /* Ensures it sits on top of absolutely everything */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none; /* Prevents clicking when hidden */
-    transition: opacity 0.4s ease;
-}
-
-/* The Straight-Edged Box */
-.modal-box {
-    background-color: var(--white);
-    padding: 50px 40px;
-    border-radius: 0; /* Sharp, geometric corners */
-    max-width: 450px;
-    width: 90%;
-    position: relative;
-    text-align: center;
-    transform: translateY(30px); /* Starts slightly lower for a smooth glide up */
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-/* The Active State (When Opened) */
-.modal-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.modal-overlay.active .modal-box {
-    transform: translateY(0);
-}
-
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--brown);
-    cursor: pointer;
-    transition: color 0.3s ease;
-    z-index: 100; /* THE FIX: Forces the cross to the very top layer */
-}
-
-.close-btn:hover {
-    color: var(--copper);
-}
-
-/* Typography inside the modal */
-.modal-title { font-size: 2rem; }
-.modal-text { font-size: 0.95rem; color: rgba(43, 27, 23, 0.8); line-height: 1.6; }
-
-/* Utility class to make the buttons stretch full width */
-.w-full { 
-    width: 100%; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 12px; /* Breathing room between the icon and text */
-}
-
-/* Utility margins */
-.mb-medium { margin-bottom: 30px; 
-}
-
-/* ==========================================
-   EDGE-TO-EDGE SERVICES GRID (3:2 FILM RATIO)
-========================================== */
-
-/* The Breakout Grid: Zero gaps, full width */
-.landscape-services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0; /* Zero gap between images */
-    width: 100vw; /* Spans the entire screen */
-    margin-left: calc(-50vw + 50%); /* Breaks out of the standard container */
-}
-
-/* The Image Canvas */
-.landscape-card {
-    position: relative;
-    aspect-ratio: 3 / 2; /* Classic cinematic film ratio */
-    overflow: hidden;
-    cursor: pointer;
-    background-color: var(--brown);
-}
-
-.landscape-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-/* The Base Tint */
-.landscape-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(43, 27, 23, 0.95) 0%, rgba(43, 27, 23, 0.1) 60%);
-    transition: background 0.6s ease;
-}
-
-/* Text Container */
-.landscape-content {
-    position: absolute;
-    inset: 0;
-    padding: 40px; /* Generous breathing room */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    text-align: left;
-    z-index: 2;
-}
-
-.landscape-number { font-size: 1.25rem; margin-bottom: 5px; opacity: 0.8; }
-.landscape-title { font-size: 1.8rem; color: var(--cream); margin: 0 0 15px 0; font-weight: 300; transition: transform 0.6s ease; }
-
-/* THE BULLETPROOF LINE ANIMATION */
-.landscape-line { 
-    width: 60px; /* Set a fixed width */
-    height: 1px; 
-    background-color: var(--gold); 
-    margin-bottom: 15px; 
-    transform: scaleX(0); /* Hide it by scaling it down to zero */
-    transform-origin: left; /* Make it grow from left to right */
-    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
-}
-
-/* The Hidden Description */
-.landscape-desc {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: rgba(245, 245, 220, 0.85);
-    max-height: 0;
-    opacity: 0;
-    margin: 0;
-    transform: translateY(15px);
-    transition: max-height 0.6s ease, opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* --- THE HOVER INTERACTION --- */
-.landscape-card:hover .landscape-bg { transform: scale(1.05); }
-.landscape-card:hover .landscape-overlay { background: linear-gradient(to top, rgba(43, 27, 23, 0.95) 0%, rgba(43, 27, 23, 0.4) 100%); }
-.landscape-card:hover .landscape-title { transform: translateY(-5px); }
-.landscape-card:hover .landscape-line { transform: scaleX(1); } /* Glides perfectly into view */
-.landscape-card:hover .landscape-desc { 
-    max-height: 120px; 
-    opacity: 1; 
-    transform: translateY(0); 
-    margin-top: 5px; 
-}
-
-/* --- MOBILE: Stacking into 1 column --- */
-@media (max-width: 1024px) {
-    .landscape-services-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 768px) {
     .landscape-services-grid { grid-template-columns: 1fr; }
-    .landscape-card { aspect-ratio: 4 / 3; } /* Slightly taller on mobile */
-    .landscape-line { transform: scaleX(1); width: 40px; } /* Always show line on mobile */
-    .landscape-desc { 
-        max-height: 120px; 
-        opacity: 1; 
-        transform: translateY(0); 
-        margin-top: 10px; 
-    }
-}
-
-
-/* ==========================================
-   DESIGN PAGE CSS
-========================================== */
-
-/* The Solid Header for Internal Pages */
-.header-solid {
-    background-color: var(--white); /* Crisp white background */
-    border-bottom: 1px solid rgba(43, 27, 23, 0.05); /* Very faint dividing line */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); /* Faint drop shadow */
-}
-
-/* Ensure header links are dark brown on the white background */
-.header-solid .nav-link, 
-.header-solid .logo-text {
-    color: var(--brown) !important; 
-}
-
-/* Page Spacing Utilities */
-.pt-vlarge { padding-top: 140px; } /* Gives room so the header doesn't cover the title */
-.max-w-screen { max-width: 1400px; }
-.mx-auto { margin-left: auto; margin-right: auto; }
-
-/* The Filter Buttons */
-.filter-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.filter-btn {
-    background: none;
-    border: none;
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    color: rgba(43, 27, 23, 0.5); /* Dimmed brown */
-    cursor: pointer;
-    padding-bottom: 5px;
-    border-bottom: 1px solid transparent;
-    transition: all 0.3s ease;
-}
-
-/* Hover and Active State for Filters */
-.filter-btn:hover, 
-.filter-btn.active {
-    color: var(--brown);
-    border-bottom-color: var(--copper); /* Elegant copper underline when selected */
-}
-
-/* Gallery Item Animation */
-.gallery-item {
-    transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
-/* A class applied by Javascript when items are filtered out */
-.gallery-item.hidden {
-    display: none;
-}
-/* --- HEADER SOLID LOGIC --- */
-/* Forces the logo to display in its natural black colour on the white header */
-.header-solid .site-logo {
-    filter: none !important; 
-}
-
-/* --- GRID RESPONSIVENESS (4 to 3 to 2) --- */
-.grid-4-col {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px; /* Adjust this to match your homepage gap perfectly */
-}
-
-/* Tablet (Screens under 1024px) */
-@media (max-width: 1024px) {
-    .grid-4-col { 
-        grid-template-columns: repeat(3, 1fr); 
-    }
-}
-
-/* Mobile (Screens under 768px) */
-@media (max-width: 768px) {
-    .grid-4-col { 
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 15px; /* Slightly tighter gaps on mobile */
-    }
-}
-/* ==========================================
-   DESIGNS PAGE FIXES
-========================================== */
-
-/* --- 1. FIXING THE INVISIBLE HEADER ICONS --- */
-/* Forces the SVG icons (Search, Heart) to be dark brown on the white header */
-.header-solid .search-btn svg,
-.header-solid .favourites-btn svg {
-    stroke: var(--black) !important; 
-}
-
-/* Forces the 3 lines of the hamburger menu to be dark brown */
-.header-solid .hamburger-icon span {
-    background-color: var(--black) !important;
-}
-
-/* Fixes the little counter number on the heart icon */
-.header-solid .fav-count {
-    background-color: var(--gold) !important;
-    color: var(--brown) !important;
-}
-
-/* --- 2. THE TOP GAP FIX --- */
-/* A specific class just for this page so we don't rely on the massive homepage paddings */
-.pt-gallery {
-    padding-top: 120px; /* Just enough to clear the sticky header elegantly */
-    padding-bottom: 80px; /* Just enough to clear the sticky header elegantly */
-}
-
-/* --- 3. THE 4-3-2 RESPONSIVE GRID --- */
-/* Desktop: 4 Columns */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px; /* Matches standard homepage gaps */
-}
-
-/* Tablet: 3 Columns */
-@media (max-width: 1024px) {
-    .gallery-grid { 
-        grid-template-columns: repeat(3, 1fr); 
-    }
-}
-
-/* Mobile: 2 Columns */
-@media (max-width: 768px) {
-    .gallery-grid { 
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 16px; /* Slightly tighter on mobile so images don't get too tiny */
-    }
-}
-
-/* --- 4. THE HEART ICON (FAVOURITES) --- */
-/* Ensures the wishlist button looks exactly like the homepage version */
-.wishlist-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--white);
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Soft luxury shadow */
-    transition: transform 0.3s ease;
-    z-index: 10;
-}
-
-.wishlist-btn svg {
-    width: 18px;
-    height: 18px;
-    stroke: var(--red);
-    transition: fill 0.3s ease, stroke 0.3s ease;
-}
-
-.wishlist-btn:hover {
-    transform: scale(1.08); /* Slight pop on hover */
-}
-
-/* When a user clicks it, it fills with copper */
-.wishlist-btn.active svg {
-    fill: var(--red);
-    stroke: var(--red);
-}
-
-/* Ensures the image frame keeps everything contained */
-.img-4x5 {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    background-color: var(--cream);
-}
-
-.img-4x5 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-/* ==========================================
-   HEADER COLOUR DYNAMICS (TRANSPARENT VS SOLID)
-========================================== */
-
-/* 1. Default State (Top of Homepage) - Crisp White */
-.site-header {
-    color: var(--white);
-}
-.hamburger-icon span {
-    background-color: var(--white);
-}
-.search-btn svg, 
-.favourites-btn svg {
-    stroke: var(--white);
-}
-.btn-header-contact {
-    color: var(--white);
-    border-color: var(--white);
-}
-
-/* 2. Scrolled Homepage OR Secondary Pages - Deep Brown */
-.site-header.scrolled,
-.site-header.header-solid {
-    color: var(--brown) !important;
-    background-color: var(--white); /* Ensures background is solid */
-}
-
-/* Flips the Hamburger Menu */
-.site-header.scrolled .hamburger-icon span,
-.site-header.header-solid .hamburger-icon span {
-    background-color: var(--brown) !important;
-}
-
-/* Flips the Search and Heart Icons */
-.site-header.scrolled .search-btn svg,
-.site-header.header-solid .search-btn svg,
-.site-header.scrolled .favourites-btn svg,
-.site-header.header-solid .favourites-btn svg {
-    stroke: var(--brown) !important;
-}
-
-/* Flips the Contact Us Button */
-.site-header.scrolled .btn-header-contact,
-.site-header.header-solid .btn-header-contact {
-    color: var(--brown) !important;
-    border-color: var(--brown) !important;
-}
-
-/* THE FIX: Forces the background to flip to brown and the text to white on hover */
-.site-header.scrolled .btn-header-contact:hover,
-.site-header.header-solid .btn-header-contact:hover {
-    background-color: var(--brown) !important;
-    color: var(--white) !important;
-}
-
-/* Ensures the Heart Counter Text stays readable */
-.site-header.scrolled .fav-count,
-.site-header.header-solid .fav-count {
-    color: var(--brown) !important;
-    background-color: var(--gold) !important;
-}
-
-/* ==========================================
-   SCROLL TO TOP BUTTON
-========================================== */
-.scroll-to-top-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 45px;
-    height: 45px;
-    background-color: var(--gold);
-    color: var(--brown);
-    border: none;
-    cursor: pointer;
-    z-index: 98; /* Sits just underneath the dark menu overlay */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* Hidden state by default */
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(20px);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Soft luxury shadow */
-}
-
-/* The Active State applied by JavaScript */
-.scroll-to-top-btn.show {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-}
-
-/* Inverts beautifully on hover */
-.scroll-to-top-btn:hover {
-    background-color: var(--brown);
-    color: var(--gold);
-}
-
-.scroll-to-top-btn svg {
-    width: 22px;
-    height: 22px;
-    transition: stroke 0.3s ease;
-}
-
-/* Mobile Adjustment so it doesn't get in the way of thumbs */
-@media (max-width: 768px) {
-    .scroll-to-top-btn {
-        bottom: 20px;
-        right: 20px;
-        width: 40px;
-        height: 40px;
-    }
-}
-/* ==========================================
-   QUICK VIEW MODAL (SLIDING STATE)
-========================================== */
-
-/* ==========================================
-   QUICK VIEW MODAL (GHOST FIX & WHITE OUT)
-========================================== */
-
-/* 1. The Strict Dark Background */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(43, 27, 23, 0.85) !important; 
-    z-index: 9999 !important; /* Stays above absolutely everything */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* THE GHOST FIX: Locks opacity, visibility, and clickability together */
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important; 
-    transition: opacity 0.4s ease, visibility 0.4s ease !important;
-}
-
-/* When the JS says "active", everything turns on simultaneously */
-.modal-overlay.active {
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-}
-
-/* 2. The Solid White Modal Box */
-.qv-box {
-    background-color: #FFFFFF !important; /* Hardcoded pure white */
-    width: 95%;
-    max-width: 1000px; 
-    position: relative;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.2) !important; 
-    border: none;
-    overflow: hidden; 
-    
-    /* Box specific glide animation */
-    transform: translateY(30px);
-    opacity: 0;
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.4s ease;
-}
-
-.modal-overlay.active .qv-box { 
-    transform: translateY(0); 
-    opacity: 1;
-}
-
-/* 3. The Close Button (Fixed Z-Index) */
-.close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--brown);
-    cursor: pointer;
-    transition: color 0.3s ease;
-    z-index: 999 !important; /* Forces the 'X' to stay visibly on top of the sliding text */
-}
-
-.close-btn:hover {
-    color: var(--copper);
-}
-
-/* 4. The Internal Split Layout */
-.qv-content { 
-    display: flex; 
-    width: 100%; 
-    height: 60vh; 
-    min-height: 500px;
-    max-height: 700px;
-}
-
-
-/* 3. THE IMAGE FIX: Absolute Containment */
-.qv-image-side { 
-    width: 55%; 
-    height: 100%;
-    position: relative; /* Anchors the image */
-    overflow: hidden; 
-}
-
-.qv-image-side img { 
-    position: absolute; /* THE MASTER FIX: Stops the image from dictating the box size */
-    inset: 0;
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-}
-
-/* 4. THE SLIDING TEXT PANEL */
-.qv-text-side { 
-    width: 45%; 
-    position: relative; 
-    overflow: hidden; 
-}
-
-.qv-view {
-    position: absolute;
-    inset: 0;
-    padding: 0 10%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: left;
-    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.5s ease;
-}
-
-/* Default Details View */
-#qv-details-view {
-    transform: translateX(0);
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* Hidden Contact View */
-#qv-contact-view {
-    transform: translateX(50px);
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* The Active Swapped State */
-.qv-text-side.show-contact #qv-details-view {
-    transform: translateX(-50px); 
-    opacity: 0;
-    pointer-events: none;
-}
-
-.qv-text-side.show-contact #qv-contact-view {
-    transform: translateX(0); 
-    opacity: 1;
-    pointer-events: auto;
-}
-
-/* Typography & Buttons */
-.qv-collection { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 700; margin-bottom: 15px; }
-.qv-title { font-size: 2.75rem; margin-bottom: 5px; line-height: 1.1; }
-.qv-view .archive-ref { font-size: 0.75rem; margin-bottom: 50px; }
-
-.back-btn {
-    background: none; border: none; font-family: var(--font-body);
-    color: var(--gold); font-size: 0.75rem; text-transform: uppercase; 
-    letter-spacing: 0.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; 
-    padding: 0; transition: color 0.3s ease;
-}
-
-.back-btn:hover { color: var(--brown); }
-
-/* --- MOBILE RESPONSIVENESS --- */
-@media (max-width: 768px) {
-    .qv-content { 
-        flex-direction: column; 
-        height: auto;
-        min-height: auto;
-    }
+    .landscape-card { aspect-ratio: 4 / 3; } 
+    .landscape-line { transform: scaleX(1); width: 40px; } 
+    .landscape-desc { max-height: 120px; opacity: 1; transform: translateY(0); margin-top: 10px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .qv-content { flex-direction: column; height: auto; min-height: auto; }
     .qv-image-side, .qv-text-side { width: 100%; }
     .qv-image-side { height: 50vh; }
     .qv-text-side { height: 50vh; }
     .qv-view { padding: 40px 30px; }
     .qv-title { font-size: 2.25rem; }
     .qv-view .archive-ref { margin-bottom: 40px; }
-}
-/* ==========================================
-   EDITORIAL ZIG-ZAG LOOKBOOKS (4:5 RATIO)
-========================================== */
+    .scroll-to-top-btn { bottom: 20px; right: 20px; width: 40px; height: 40px; }
 
-.editorial-showcase {
-    display: flex;
-    align-items: center;
-    
-    /* THE FIX: Removes the bottom gap so corners touch perfectly */
-    margin-bottom: 0; 
-    
-    /* THE FIX: Removed the flex 'gap' property so the images mathematically lock at exactly 50% width without squishing */
-}
-
-/* Flips every second block */
-.editorial-showcase:nth-child(even) {
-    flex-direction: row-reverse;
-}
-
-/* The Image Canvas */
-.editorial-img {
-    width: 50%;
-    aspect-ratio: 4 / 5;
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0; /* Prevents the image from being squeezed */
-}
-
-.editorial-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.2s ease;
-}
-
-.editorial-showcase:hover .editorial-img img {
-    transform: scale(1.05);
-}
-
-/* The Text Canvas */
-.editorial-text {
-    width: 50%;
-    padding: 0 8%; /* We use padding here to create internal breathing room instead of a flex gap */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: left;
-}
-
-.editorial-number { font-size: 1.25rem; font-weight: 700; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 15px; }
-.editorial-title { font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px; color: var(--brown); }
-.editorial-desc { font-size: 1rem; line-height: 1.8; opacity: 0.8; margin-bottom: 40px; }
-
-/* --- MOBILE BEHAVIOUR --- */
-@media (max-width: 900px) {
-    .editorial-showcase, 
-    .editorial-showcase:nth-child(even) { 
-        flex-direction: column; 
-        /* THE MOBILE FIX: Re-introduces space ONLY on small screens so text doesn't crash into the next image */
-        margin-bottom: 80px; 
-    }
-    .editorial-img { width: 100%; }
-    .editorial-text { 
-        width: 100%; 
-        padding: 40px 20px 0 20px; /* Adds space above the text */
-        text-align: center; 
-        align-items: center; 
-    }
-    .editorial-title { font-size: 2.5rem; }
-}
-
-/* ==========================================
-   HEADER TRANSFORMATION & SEARCH SLIDE
-========================================== */
-
-/* 1. When the Header goes into 'Search Mode' */
-.header-search-mode {
-    background-color: #FFFFFF !important;
-}
-
-/* Hide normal elements */
-.header-search-mode .menu-toggle-btn,
-.header-search-mode #open-search-btn,
-.header-search-mode .btn-header-contact {
-    display: none !important;
-}
-
-/* Show search elements */
-.header-search-mode .header-search-socials { display: flex !important; gap: 30px; }
-.header-search-mode .header-search-socials a { color: #000000; font-size: 1.25rem; transition: opacity 0.3s; }
-.header-search-mode .header-search-socials a:hover { opacity: 0.5; }
-.header-search-mode #close-search-btn { display: block !important; background: none; border: none; font-size: 1.75rem; color: #000000; cursor: pointer; }
-.header-search-mode #close-search-btn:hover { transform: scale(1.1); }
-
-/* Force Logo and Heart to Black */
-.header-search-mode .site-logo { filter: none !important; }
-.header-search-mode .favourites-btn svg { stroke: #000000 !important; }
-.header-search-mode .fav-count { background-color: #000000 !important; color: #FFFFFF !important; }
-
-/* 2. The Slick White Canvas */
-.search-modal {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #FFFFFF;
-    z-index: 40; /* Crucial: Sits underneath the main header (50) */
-    padding-top: 130px; /* Leaves space for the header */
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    
-    /* The slick, fast animation */
-    transform: translateY(-100%);
-    visibility: hidden;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.4s;
-}
-
-.search-modal.active {
-    transform: translateY(0);
-    visibility: visible;
-}
-
-.search-container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px 60px 24px; display: flex; flex-direction: column; align-items: center; }
-
-.premium-search-box { width: 100%; max-width: 600px; border: 1px solid #000000; padding: 18px 25px; margin-bottom: 80px; }
-.premium-search-input { width: 100%; background: transparent; border: none; outline: none; font-family: var(--font-body); font-size: 1rem; color: #000000; text-align: center; text-transform: uppercase; letter-spacing: 0.1em; }
-.premium-search-input::placeholder { color: #000000; opacity: 0.4; }
-
-.cta-question { color: #000000; font-family: var(--font-heading); font-size: 1.75rem; line-height: 1.4; margin-bottom: 30px; }
-.search-cta-buttons { display: flex; gap: 20px; justify-content: center; }
-
-.btn-black-outline { display: inline-flex; align-items: center; gap: 10px; padding: 14px 35px; border: 1px solid #000000; color: #000000; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; font-weight: 700; background: transparent; transition: all 0.3s ease; }
-.btn-black-outline:hover { background-color: #000000; color: #FFFFFF; }
-.d-none { display: none !important; }
-
-@media (max-width: 768px) {
+    /* Search Mobile */
     .header-search-socials { gap: 15px; }
     .cta-question { font-size: 1.35rem; }
     .search-cta-buttons { flex-direction: column; max-width: 300px; margin: 0 auto; }
     .btn-black-outline { width: 100%; justify-content: center; }
+    
+    /* THE FIX: Hide Maps and top 'X' in search mode, show bottom button */
+    .header-search-mode .search-map-icon { display: none !important; }
+    .header-search-mode #close-search-btn { display: none !important; }
+    .close-search-bottom-btn { display: block; }
 }

@@ -163,9 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return savedDesigns.includes(designId) ? 'active' : '';
     }
 
-// Builds the HTML, but now accepts a "hidden" command
     function createDesignCardHTML(design, hiddenClass = '') {
-        // If hiddenClass is passed, it forces opacity to 0 instantly
         const style = hiddenClass ? 'style="opacity: 0;"' : ''; 
         
         return `
@@ -186,14 +184,11 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 
-    // THE MAGIC BRIDGE: Fetching your live data from Google Drive
     const API_URL = "https://script.google.com/macros/s/AKfycbwRbNf7A0eLD3CcOs0W6iE7ZFbkhhQYcIITdXbQ8a8al50bFl55mlL_FQiTsnoc91LwMw/exec";
 
-// We wrap the building process in a function so we can trigger it instantly from memory
     function renderWebsiteData(data) {
         darpanDesigns = data; 
 
-        // Inject into Homepage
         const homepageGrid = document.getElementById('homepage-designs-grid');
         if (homepageGrid) {
             homepageGrid.innerHTML = darpanDesigns
@@ -203,7 +198,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 .join('');
         }
 
-        // Inject into Designs Archive Page (PRE-FILTERED)
         const allDesignsGrid = document.getElementById('all-designs-grid');
         if (allDesignsGrid) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -215,7 +209,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }).join('');
         }
 
-        // Inject into Favourites Page
         const favouritesGrid = document.getElementById('favourites-grid');
         if (favouritesGrid) {
             const savedIds = JSON.parse(localStorage.getItem('darpanFavourites')) || [];
@@ -235,26 +228,22 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // Attach all the interactive buttons
         initFavourites();
         initFilters();
         initQuickView();
         initSearch();
     }
 
-    // THE SPEED FIX: Check if we already downloaded the catalogue this session
     const cachedData = sessionStorage.getItem('darpanCatalogue');
 
     if (cachedData) {
-        // INSTANT LOAD: The user has been here already, use the saved memory instantly
         renderWebsiteData(JSON.parse(cachedData));
     } else {
-        // FIRST LOAD: Fetch from Google Drive, then save it to memory for the next page click
         fetch(API_URL)
             .then(response => response.json())
             .then(data => {
-                sessionStorage.setItem('darpanCatalogue', JSON.stringify(data)); // Save to memory
-                renderWebsiteData(data); // Build the site
+                sessionStorage.setItem('darpanCatalogue', JSON.stringify(data)); 
+                renderWebsiteData(data); 
             })
             .catch(error => console.error("Error loading designs:", error));
     }
@@ -274,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const favCountDisplays = document.querySelectorAll('.fav-count');
             favCountDisplays.forEach(display => {
                 display.innerText = savedDesigns.length;
-        });
+            });
         }
         updateFavCount();
 
@@ -307,22 +296,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-// ==========================================
-    // 9. DESIGNS PAGE FILTERING (WITH URL PARSING)
+    // ==========================================
+    // 9. DESIGNS PAGE FILTERING
     // ==========================================
     function initFilters() {
         const filterBtns = document.querySelectorAll('.filter-btn');
         const galleryItems = document.querySelectorAll('.gallery-item');
 
         if (filterBtns.length > 0 && galleryItems.length > 0) {
-            
-            // 1. Check the web address for a specific filter request
             const urlParams = new URLSearchParams(window.location.search);
             const activeFilter = urlParams.get('filter') || 'all';
 
-            // 2. The master function to visually swap the grid and buttons
             function applyFilter(filterValue) {
-                // Highlight the correct button
                 filterBtns.forEach(b => {
                     if(b.getAttribute('data-filter') === filterValue) {
                         b.classList.add('active');
@@ -331,7 +316,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
 
-                // Show/Hide the correct garments
                 galleryItems.forEach(item => {
                     if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                         item.classList.remove('hidden');
@@ -343,10 +327,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            // 3. Apply the filter instantly on load
             applyFilter(activeFilter);
 
-            // 4. Listen for manual clicks going forward
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     applyFilter(btn.getAttribute('data-filter'));
@@ -421,7 +403,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     }
-    
 
     // ==========================================
     // 11. LIVE SEARCH LOGIC (SLIDE FROM BEHIND)
@@ -430,6 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const mainHeader = document.getElementById('main-header');
         const openSearchBtn = document.getElementById('open-search-btn');
         const closeSearchBtn = document.getElementById('close-search-btn');
+        const closeSearchBottom = document.getElementById('close-search-bottom');
         const headerLogoLink = document.getElementById('header-logo-link');
         
         const searchOverlay = document.getElementById('search-overlay');
@@ -443,13 +425,11 @@ document.addEventListener("DOMContentLoaded", () => {
             openSearchBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 
-                // Prevent scrolling & layout shift
                 const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
                 document.body.style.paddingRight = `${scrollbarWidth}px`;
                 mainHeader.style.paddingRight = `calc(var(--pad-x) + ${scrollbarWidth}px)`;
                 document.body.style.overflow = 'hidden';
                 
-                // Trigger the header transformation and slide-down canvas
                 mainHeader.classList.add('header-search-mode');
                 searchOverlay.classList.add('active');
                 
@@ -461,7 +441,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 searchOverlay.classList.remove('active');
                 mainHeader.classList.remove('header-search-mode');
                 
-                // Wait for the slick slide-up animation to finish before restoring scrollbars
                 setTimeout(() => {
                     document.body.style.overflow = '';
                     document.body.style.paddingRight = ''; 
@@ -473,7 +452,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (searchEmptyState) searchEmptyState.classList.add('d-none');
             }
 
-            // Bind 'X' button
+            // Bind Top 'X' button
             if (closeSearchBtn) {
                 closeSearchBtn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -481,7 +460,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            // Bind Logo to close ONLY when in search mode
+            // Bind Bottom Close Button (Mobile)
+            if (closeSearchBottom) {
+                closeSearchBottom.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    closeSearch();
+                });
+            }
+
+            // Bind Logo
             if (headerLogoLink) {
                 headerLogoLink.addEventListener('click', (e) => {
                     if (mainHeader.classList.contains('header-search-mode')) {
@@ -554,7 +541,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     const interactionPanel = document.getElementById('qv-interaction-panel');
                     if(interactionPanel) interactionPanel.classList.remove('show-contact');
 
-                    // Close search and instantly open Quick View
                     closeSearch();
                     document.getElementById('quick-view-modal').classList.add('active');
                     document.body.style.overflow = 'hidden';
